@@ -1,0 +1,73 @@
+div.menusContent
+{
+	position: fixed;
+    width: 100%;
+    z-index: 50;
+    background-color: white;
+    height: 40px;
+    text-align: left;
+}
+div.menusContent.factures
+{
+    z-index: 100;
+}
+
+button.headerButtons
+{
+	padding: 3px 10px;
+    background-color: #eeeeee;
+    color: black;
+    text-transform: initial;
+    border:none;
+    margin: 9px;
+}
+
+button.headerButtons:hover
+{
+	background-color: #c9c9c9;
+}
+
+button.headerButtons:active
+{
+	background-color: #9cd4fc;
+}
+
+div.menus
+{
+	position: fixed;
+    background-color: #f4f4f4;
+    box-shadow: 1px 1px 3px 0px #0000008f;
+    text-align: left;
+    z-index: 1000;
+}
+
+button.menuButtons
+{
+	display: block;
+    background-color: #ffffff00;
+    color: black;
+    padding: 5px 10px;
+    margin: 1px;
+    width: 100%;
+    text-align: left;
+    text-transform: initial;
+    border: none; 
+}
+
+button.menuButtons:hover
+{
+	background-color: #c9c9c9;
+}
+
+button.menuButtons:active
+{
+	background-color: #9cd4fc;
+}
+
+.menu-separator
+{
+    width : 100%;
+    height : 1px;
+    margin: 0.1em auto;
+    background: #9f9f9f;
+}

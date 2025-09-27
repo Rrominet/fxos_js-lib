@@ -1,0 +1,441 @@
+body.windows-manager
+{
+    text-align : center;
+}
+
+:focus
+{
+    outline : none;
+}
+
+div.window
+{
+    padding: 1em;
+    border-radius: 0.2em;
+    box-shadow: 0 0 5px #00000029;
+    transition : box-shadow 0.2s;
+    background-color: #fff;
+    position : relative;
+    margin : auto;
+    overflow : hidden;
+    color : black;
+}
+
+div.window.popup
+{
+    position : fixed;
+    margin-top : 5em;
+    max-height: calc(100% - 8em);
+    overflow-y: auto;
+    top : 0;
+    left : 0;
+}
+
+@keyframes popup-show
+{
+    0%
+    {
+        transform : scale(0.8);
+        opacity : 0;
+    }
+
+    100%
+    {
+        transform : scale(1.0);
+        opacity : 1;
+    }
+}
+
+div.window.draggable.popup
+{
+    margin-top: 0;
+}
+
+div.window .footer
+{
+    margin-top : 1em;
+}
+
+.popup .footer button
+{
+    display : block; 
+    margin : auto;
+}
+
+.popup .footer span
+{
+    display : block; 
+    text-align : left;
+    font-size : 0.8em;
+    line-height: 1.5em;
+    margin-top: 1.5em;
+}
+
+.popup p
+{
+    width : 90%; 
+    margin : 1.5em auto;
+}
+
+div.window.draggable
+{
+    position : fixed;
+    top : 0;
+    left : 0;
+}
+
+div.window.focus
+{
+    box-shadow: 0 0 5px #3e8390a1;
+    z-index : 1000;
+}
+
+div.window div.title
+{
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.1em;
+    border : none;
+    border-top : none;
+    border-bottom : none;
+    border-left : none;
+    border-right : none;
+    display : flex; 
+    align-items : center;
+    padding : 0;
+}
+
+div.window div.title img
+{
+    width: 30px;
+    margin-right: 3em;
+}
+
+div.window div.header
+{
+    margin-bottom: 1em;
+    display: flex;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: initial;
+    border-top : none;
+    border-bottom : none;
+    border-left : none;
+    border-right : none;
+    padding : 0;
+}
+
+div.window.draggable div.header
+{
+    cursor : move;
+}
+
+div.window.dragged div.header
+{
+    cursor: grabbing;
+}
+
+div.window button.close
+{
+    margin: 0;
+    padding : 0.5em 1.2em;
+    margin-left: auto;
+    background-color: #fff;
+    border : none;
+    width : initial;
+}
+
+div.window div.tabs
+{
+    display : flex;
+}
+
+div.window button.close:before, 
+div.window button.close:after 
+{
+    position: absolute;
+    content: ' ';
+    height: 24px;
+    top : 12px;
+    width: 2px;
+    background-color: #333;
+}
+
+div.window button.close:active
+{
+    filter : none;
+}
+
+div.window .scale
+{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    cursor: se-resize;
+}
+
+div.window.style input.auto:before
+{
+    content : 'auto';
+}
+
+div.window.style input.auto
+{
+    appearance: none;
+    color: #616161;
+    font-style: italic;
+}
+
+div.window.style input[type="number"].auto
+{
+    background-color: #bebebe;
+}
+
+div.window.style input.auto::-webkit-slider-thumb
+{
+    appearance : none;
+}
+
+div.window input
+{
+    display : block; 
+    border : none; 
+    padding : 1em 2em;
+    border-bottom : 1px solid;
+    width: calc(100% - 4em);
+}
+
+div.window.style label input[type="text"]
+{
+    border: none;
+    border-bottom: 1px solid grey;
+    padding: 0.7em;
+    padding-top: 0;
+}
+
+div.window div.css-inputs select
+{
+    display: block;
+    margin-right: 0px;
+    margin-left: auto;
+    padding: 0.4em;
+    border: none;
+    background-color: white;
+    border-radius: 0.2em;
+    margin-top: -1.9em;
+}
+
+div.window input[type="number"]
+{
+    width: 3em;
+    margin: auto 0.3em;
+    border: none;
+    box-shadow: 0 0 3px #0000005e;
+    border-radius: 0.3em;
+    padding: 0.4em 0.8em;
+}
+
+div.mask 
+{
+    opacity: 0.9;
+    z-index: 10;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+div.window label input[type="color"]
+{
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+}
+
+div.window button.close:before {
+  transform: rotate(45deg);
+}
+div.window button.close:after {
+  transform: rotate(-45deg);
+}
+
+div.window button
+{
+    cursor: pointer;
+    border: none;
+    padding: 0.5em 1.2em;
+    border-radius: 0.2em;
+    transition: box-shadow 0.2s;
+    font-weight: bold;
+}
+
+div.window button:hover
+{
+    box-shadow: 0 0 2px #00000029;
+}
+
+div.window button.close:hover
+{
+    box-shadow: none;
+}
+
+div.window.center
+{
+    position : fixed; 
+    width : calc(50% - 2em); 
+    margin-left : calc(25% - 0.5em);
+    margin-top : 5em;
+}
+
+div.window div.content
+{
+    position : relative;
+    user-select: text;
+}
+
+div.window.draggable div.content
+{
+    max-height : initial;
+}
+
+div.window label
+{
+    display: block;
+}
+
+div.popup div.form
+{
+    width: 70%;
+    margin: auto;
+}
+
+div.popup div.answer
+{
+    margin-top : 1em;
+}
+
+
+div.window, 
+div.window .header, 
+div.window .header .title, 
+div.window .header .title img,
+div.window button
+{
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+div.window div.css
+{
+    text-align : left;
+}
+
+div.window div.css label
+{
+    display : flex;
+    padding: 0.25em 0;
+    margin: 0.25em 0;
+}
+
+div.window div.css label span
+{
+    display : block;
+    margin-right : 2em;
+}
+
+div.window div.css input[type="range"]
+{
+    webkit-appearance: initial;
+    padding : initial; 
+    margin:initial; 
+    background-color : none;
+    margin-top : initial;
+    width : auto;
+    position : relative;
+}
+
+div.window div.css label input
+{
+    display : block;
+    margin-left : auto; 
+    margin-right: 1em;
+}
+
+div.window div.separator
+{
+    width : 100%;
+    height : 0;
+    border-top : 1px solid;
+
+    margin: 0.5em 0;
+}
+
+div.window div.txt-style
+{
+    margin: 1em 0;
+    display : flex;
+}
+
+div.window div.css div.borders,
+div.window div.css div.shadow
+{
+    padding-left: 1em;
+}
+
+div.window div.txt-style button
+{
+    margin : auto;
+}
+
+div.window button.icon
+{
+    padding: 0.7em 0.7em;
+    line-height: 0;
+}
+
+div.window button.toggle.active
+{
+    background-color: #c3ddff;
+}
+
+div.window img.icon
+{
+    width : 15px;
+}
+
+@media (max-width : 1280px)
+{
+    div.popup div.form
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width : 840px)
+{
+    div.window.center
+    {
+        width : calc(95% - 2em); 
+        margin-left : calc(2.5% - 0.5em);
+    }
+
+}
+
+@media (max-width : 600px)
+{
+    div.window
+    {
+        margin-top : 1em;
+    }
+
+}

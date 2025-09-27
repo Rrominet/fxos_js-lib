@@ -1,0 +1,16 @@
+div.cb-menu
+{
+    flex-direction: column;
+    display: flex;
+    position: fixed;
+    left : 0;
+    top : 0;
+    max-height:500px;
+    overflow: auto;
+    z-index: 10000;
+}
+
+div.cb-menu button
+{
+    width : 100%;
+}

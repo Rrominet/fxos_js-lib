@@ -1,0 +1,426 @@
+:root
+{
+    --bg :#252525; 
+    --bg-dark : #1c1c1c;
+    --bg-light : #333333;
+    --fg :#ffffff;
+    --infos :#818181;
+}
+
+:focus
+{
+    border : none;
+    outline : none;
+}
+
+::-webkit-scrollbar
+{
+    width: 7px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark); 
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-light); 
+    border-radius: 10px;
+    border: none
+}
+
+/* for Firefox... */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-dark) var(--bg-light);
+}
+
+body 
+{
+    margin : 0;
+    padding : 0;
+    text-align: center;
+    color: var(--fg);
+    background-color: var(--bg);
+}
+
+body *
+{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 0;
+    color: var(--fg);
+    font-family: system-ui;
+    position: relative;
+    width: 100%;
+}
+
+menu
+{
+    width: calc(100% - 2em);
+    margin-top: 0;
+    background: var(--bg-dark);
+    padding: 1em;
+    z-index: 100;
+    transition: transform 0.25s;
+    position: fixed;
+    top: 0;
+}
+
+menu.closed
+{
+    transform: translateY(-100%);
+}
+
+menu .header
+{
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: initial;
+}
+
+menu .buttons
+{
+    width : 100%;
+}
+
+button
+{
+    border: none;
+    padding: 0.8em 1.3em;
+    border-radius: 0.25em;
+    margin: 0.2em 0;
+    background-color: var(--bg-light);
+    box-shadow: 0 0 13px 0 #00000036;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor : pointer;
+}
+
+*:disabled
+{
+    filter: contrast(0.2);
+    cursor: not-allowed;
+}
+
+input,
+select
+{
+    padding: 1em 1.5em;
+    border: none;
+    border-radius: 0.2em;
+    background-color: var(--bg-dark);
+    font-style: italic;
+    width: calc(100% - 3em);
+    flex-direction: row;
+}
+
+div.page .header
+{
+    width: calc(100% - 2em);
+    padding: 1em;
+    background-color: var(--bg-dark);
+    box-shadow: 0px -20px 20px 20px #000000b3;
+}
+
+div.page .header .title
+{
+    margin-left: 0.5em;
+    width: initial;
+}
+
+div.page main
+{
+    overflow-y: auto;
+    padding: 0 1em;
+    width: calc(100% - 2em);
+}
+
+div.page main > *
+{
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+.menu-open
+{
+    position: fixed;
+    z-index: 99;
+    width: 35px;
+    height: 35px;
+    background: var(--bg-light);
+    border-radius: 4px;
+    right: 0.6em;
+    top: 0.6em;
+}
+
+.menu-open line
+{
+    height: 3px;
+    width: 70%;
+    background-color: var(--fg);
+    margin-bottom: 0;
+    margin-top: 6.9px;
+    border-radius: 20px;
+}
+
+.center
+{
+    align-items: center;
+}
+
+.dark
+{
+    background-color: var(--bg-dark);
+}
+
+.light
+{
+    background-color: var(--bg-light);
+}
+
+div.mask
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: #000000bf;
+}
+
+div.dialog
+{
+    position: fixed;
+    z-index: 1000;
+    width: calc(95% - 2em);
+    padding: 1em;
+    background: var(--bg);
+    left: 2.5%;
+    top: 10vh;
+    border-radius: 0.3em;
+}
+
+div.dialog div.header
+{
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 0.3em;
+    margin-bottom: 0.3em;
+    border-bottom: 1px solid var(--fg);
+}
+
+div.dialog div.header div.titre
+{
+    margin-left: 0.5em;
+}
+
+div.dialog div.header button
+{
+    width: initial;
+}
+
+div.dialog div.footer
+{
+    flex-direction: row;
+    width: 100%;
+}
+
+div.dialog div.footer button
+{
+    width: initial;
+}
+
+div.dialog div.footer button:first-child,
+.label-container *:first-child,
+.input-container *:first-child
+{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+div.dialog div.footer button:last-child,
+.label-container *:last-child,
+.input-container *:last-child
+{
+    margin-left: auto;
+    margin-right: 0;
+    flex-direction: row;
+}
+
+div.dialog main
+{
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: clip;
+    width: 100%;
+    text-align : left;
+}
+
+.label-container,
+.input-container
+{
+    flex-direction: row;
+}
+
+label
+{
+    text-align: left;
+    padding: 0.5em;
+    width: calc(100% - 1em);
+}
+
+.label-container *:first-child,
+.input-container *:first-child
+{
+    text-align: left;
+    width: initial;
+    white-space: nowrap;
+}
+
+.input-container *:first-child
+{
+    margin-right: 1em;
+}
+
+.input-container input,
+.input-container input:last-child
+{
+    text-align: left;
+}
+
+.label-container *:last-child,
+.input-container *:last-child
+{
+    text-align: right;
+}
+
+div.page main .separator,
+.separator
+{
+    margin: 0.5em 0;
+    width: 100%;
+    padding: 1px 0;
+    background-color: var(--fg);
+}
+
+h1, h2, h3, h4, h5, h6, p
+{
+    padding: 0.5em;
+    width: calc(100% - 1em);
+    display : block;
+}
+
+p
+{
+    text-align: left;
+}
+
+.infos
+{
+    font-style: italic;
+    color: var(--infos);
+    font-size: 0.8em;
+}
+
+textarea
+{
+    margin: 1em auto;
+    border-radius: 0.3em;
+    padding: 1em;
+    font-family: system-ui;
+    font-style: italic;
+    font-weight: bold;
+    height: 200px;
+    background: var(--bg-light);
+    width: calc(100% - 2em);
+    border: none;
+}
+
+#version
+{
+    width: initial;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding-left: 2px;
+    font-size: 0.8em;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 100;
+}
+
+p,
+note
+{
+    position: relative;
+    display: block;
+}
+
+note
+{
+    background: #28413a;
+    padding: 1em;
+    width: calc(80% - 2em);
+    text-align: right;
+    margin: 1em auto;
+    margin-right: 0;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 0.85em;
+}
+
+
+b,i,u,a
+{
+    display: initial;
+    width: initial;
+    margin: initial;
+    position: initial;
+}
+
+.timed-infos
+{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    margin: 1em;
+    background: #474747;
+    width: initial;
+    max-width: calc(100% - 2em);
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    font-style: italic;
+    font-size: 0.85em;
+}
+
+@media screen and (min-width: 1024px)
+{
+    .page
+    {
+        max-width: 1024px;
+    }
+
+    menu
+    {
+        width: 600px;
+        left : calc(50% - 300px);
+    }
+
+    div.dialog
+    {
+        max-width: calc(800px - 2em);
+        margin-left: calc(50% - 400px - 2em);
+    }
+}

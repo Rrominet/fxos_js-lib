@@ -1,0 +1,22 @@
+body
+{
+}
+
+.email div.name
+{
+    margin : 1.5em; 
+    font-weight : bold; 
+    font-size : 1.5em;
+}
+
+.email div.object
+{
+    margin : 1em; 
+    font-weight : bold;
+    font-size : 1em;
+}
+
+.email div.email
+{
+    margin-bottom : 2em;
+}

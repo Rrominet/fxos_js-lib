@@ -1,0 +1,66 @@
+img.ba-befores, img.ba-afters, div.ba-containers
+{
+	user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-drag: none; 
+    -webkit-user-drag: none;
+}
+
+img.ba-befores
+{
+	position: absolute;
+	z-index:0;
+}
+
+img.ba-afters
+{
+	position: relative;
+    z-index: 1;
+	width:100%;
+}
+
+div.ba-interfaces
+{
+	position: absolute;
+    z-index: 2;
+}
+
+div.ba-lines
+{
+    background-color: white;
+    box-shadow: 2px 0 3px #000000cf;
+}
+
+div.ba-takers
+{
+	width: 30px;
+    height: 117px;
+    background-color: #00922d;
+    border-radius: 13px;
+    cursor: -webkit-grab;
+    transition-duration: 0.3s;
+}
+
+div.ba-takers:hover
+{
+	transform : scale(1.05, 1.05);
+}
+
+div.ba-takers:active
+{
+    cursor: grabbing;
+}
+
+div.ba-dots
+{
+	height: 3px;
+    width: 28%;
+    margin: auto;
+    background-color: white;
+    margin-top: 21px;
+    border-radius: 21px;
+    box-shadow: 0 0 2px #00000085;
+}

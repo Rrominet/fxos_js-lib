@@ -1,0 +1,581 @@
+:root
+{
+    --loader-color: #0f9040;
+}
+
+:focus
+{
+    outline : none;
+}
+
+.lecteur
+{
+    margin : auto;
+    text-align: left;
+    outline-style: none;
+    width : 50%;
+    line-height: 0;
+}
+
+.lecteur video
+{
+	width : 100%;
+    cursor: pointer;
+    display: block;
+    border-radius: 5px;
+}
+
+.lecteur .seeker-container
+{
+    width: calc(100% - 1em);
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    margin-top: -70px;
+    margin-left: 0.5em;
+    transition: opacity 0.3s;
+}
+
+.lecteur .seeker
+{
+    width: 100%;
+    background-color: #ababab30;
+    height: 3px;
+    position: absolute;
+    transition: height 0.2s;
+    margin-top: 18px;
+}
+
+.lecteur .seeker.hover
+{
+    height : 6px;
+}
+
+.lecteur .seeker .bar
+{
+    height: 100%;
+    position: absolute;
+}
+
+.lecteur .seeker .seekable
+{
+    background-color: #777777;
+    width: 0%;
+}
+
+.lecteur .seeker .mouse-position
+{
+    background-color: #ffffff63;
+    width: 0%;
+    transition: opacity 0.2s;
+}
+
+.lecteur .seeker .play
+{
+    background-color: var(--loader-color);
+    width: 0%;
+}
+
+.lecteur .seeker .time
+{
+    color : white;
+    position: absolute;
+    margin-top: -20px;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    width: initial;
+}
+
+.lecteur .seeker .point
+{
+    background: var(--loader-color);
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    border-radius: 20px;
+    box-shadow: 0 0 8px 0 #000000ad;
+    margin-top: -3px;
+    transform: scale(0);
+    transition: transform 0.2s;
+    pointer-events: none;
+    padding: 0;
+}
+
+.lecteur .gradient
+{
+    background: linear-gradient(0deg, #000000c7, transparent);
+    transition: opacity 0.2s;
+    position: absolute;
+    height: 75px;
+    border-radius: 5px;
+    margin-top: -75px;;
+    width: 100%;
+    pointer-events: none;
+}
+
+.lecteur .settings-bloc
+{
+    color: white;
+    text-align: right;
+    position: absolute;
+    background: #00000080;
+    padding: 5px 0;
+    border-radius: 5px;
+    transition: opacity 0.2s;
+    right: 0;
+    margin: 1em;
+    width: initial;
+}
+
+.lecteur .settings-bloc .rate
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.lecteur .settings-bloc .qualities
+{
+    border-top: 1px solid;
+    padding-top: 5px;
+}
+
+.lecteur .settings-bloc .rate button,
+.lecteur .settings-bloc .qualities button
+{
+    display: block;
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-align: right;
+    cursor: pointer;
+    width: 100%;
+    padding: 4px 1em;
+    min-width: 100px;
+    transition: background-color 0.1s;
+    margin:initial;
+    max-width: initial;
+    border-radius: 0;
+    font-size: initial;
+    box-shadow: none;
+}
+
+.lecteur .settings-bloc .rate button:hover,
+.lecteur .settings-bloc .qualities button:hover
+{
+    background-color: var(--loader-color);
+}
+
+.lecteur .settings-bloc .rate button.active,
+.lecteur .settings-bloc .qualities button.active
+{
+    background-color: var(--loader-color);
+}
+
+.lecteur img
+{
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+
+    user-drag: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-select: none;
+
+    margin : initial;
+    max-width : initial;
+    border-radius: 5px;
+}
+
+.lecteur button.play
+{
+    z-index : 101;
+    background-color : initial;
+    transition : filter 0.3s;
+}
+
+.lecteur button.play:hover
+{
+    filter : invert(1);
+    box-shadow : none;
+}
+
+.lecteur .buttons button.play,
+.lecteur .buttons button.play:hover
+{
+    filter : initial;
+    box-shadow : initial;
+}
+
+.lecteur img.play
+{
+    background-color : initial;
+}
+
+.lecteur div.buttons
+{
+    position: relative;
+    z-index: 20;
+    text-align: left;
+    display: flex;
+    padding: 0 15px;
+    align-items: center;
+    margin-top: 10px;
+    transition: opacity 0.3s;
+    width: calc(100% - 30px);
+    flex-direction: row;
+}
+
+.lecteur .buttons button
+{
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    background: none;
+    margin:0 5px;
+    width: initial;
+    text-transform: initial;
+    min-width: initial;
+    max-width: initial;
+}
+
+.lecteur .buttons .time
+{
+    margin:0 5px;
+}
+
+.lecteur .buttons .time .sep
+{
+    margin: 0 4px;
+}
+
+.lecteur .buttons button.settings 
+{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.lecteur .buttons button.settings img
+{
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+
+.lecteur .buttons button.settings:hover img
+{
+    transform: rotate(90deg);
+}
+
+.lecteur .buttons button.settings.active img
+{
+    transform: rotate(360deg);
+}
+
+.lecteur .buttons button.fullscreen img
+{
+    transition: transform 0.3s;
+}
+
+.lecteur .buttons button.fullscreen:hover img
+{
+    transform: scale(1.1);
+}
+
+.lecteur .buttons button:first-child
+{
+    margin-left: 0;
+}
+
+.lecteur .buttons button img
+{
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.lecteur .buttons .time
+{
+    color: white;
+    display: flex;
+    width: initial;
+    flex-direction: row;
+}
+
+.lecteur .buttons .time *
+{
+    width: initial;
+    display: initial;
+}
+
+.lecteur button .play
+{
+    background : white
+}
+
+
+.lecteur button.download,
+div.videos-reponses div.videos div.video-reponse .lecteur button.download
+{
+    border: none;
+    width: 48px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.7em;
+    border-radius: 0.2em;
+    position: absolute;
+    margin-left: calc(-1.14em - 48px);
+    margin-top: 1em;
+    z-index: 101;
+    transition: background-color 0.2s, opacity 0.2s;
+    font-size : 1em;
+    display: inline-block;
+    cursor : pointer;
+}
+
+.lecteur button.download.video,
+div.videos-reponses div.videos div.video-reponse .lecteur button.download.video
+{
+    margin-left: 0;
+    right: 0;
+    margin-right: 1em;
+}
+
+.lecteur button.download:hover,
+.lecteur button.download.video:hover,
+
+div.videos-reponses div.videos div.video-reponse .lecteur button.download:hover,
+div.videos-reponses div.videos div.video-reponse .lecteur button.download.video:hover
+{
+    opacity : 1;
+    background-color: white;
+}
+
+.lecteur div.buttons img
+{
+	cursor : pointer;
+	-moz-user-select: none;
+}
+
+.lecteur div.buttons img.volume
+{
+	margin-left: 11px;
+}
+
+.lecteur div.buttons .volume-bar
+{
+    width: 100px;
+    background-color: white;
+    height: 3px;
+    position: relative;
+    cursor : pointer;
+    margin-left:1em;
+}
+
+.lecteur div.buttons img.fullscreen
+{
+    left: 100%;
+    margin-left: -50px;
+    position: absolute;
+    transition-duration: 0.3s;
+    transform: scale(0.8);
+    top : initial;
+    width: initial;
+    height: initial;
+}
+
+.lecteur div.buttons img.fullscreen:hover
+{
+    transform: scale(1);
+}
+
+.lecteur .wait-container
+{
+    position: absolute;
+    z-index: 5;
+}
+
+.lecteur .videoHoverImgs, 
+.lecteur .videoImgs
+{
+    position : absolute;
+    width: inherit;
+    cursor : pointer;
+}
+
+.lecteur .videoHoverImgs
+{
+    position : absolute;
+    width: 0;
+    height : 0;
+}
+
+.lecteur .videoImgs
+{
+    position : relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.lecteur
+{
+    transition : filter 0.2s;
+    position: relative;
+}
+
+.lecteur.disabled
+{
+    pointer-events: none;
+    filter: contrast(0.15);
+}
+
+.lecteur button.play-button
+{
+    border: none;
+    background: none;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.lecteur button.play-button img.play
+{
+    background: initial;
+}
+
+
+.lecteur-container:fullscreen button.download
+{
+    display : none;
+}
+
+.lecteur-container:fullscreen video.height-priority
+{
+    width : initial; 
+    height: 100%;
+    margin : auto;
+}
+
+.lecteur-container:fullscreen .lecteur
+{
+    width : 100%;
+}
+
+.lecteur-container:fullscreen video
+{
+    border-radius: 0;
+}
+
+.lecteur-container:fullscreen .lecteur
+{
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    left: 50%;
+    margin: 0;
+}
+
+
+.wait,
+.wait:before,
+.wait:after {
+  background: var(--loader-color);
+  animation: load1 1s infinite ease-in-out;
+  width: 0.5em;
+  height: 4em;
+}
+.wait {
+  color: var(--loader-color);
+  margin: auto;
+  position: relative;
+  animation-delay: -0.16s;
+  font-size : 15px;
+}
+.wait:before,
+.wait:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.wait:before {
+  left: -0.75em;
+  animation-delay: -0.32s;
+}
+.wait:after {
+  left: 0.75em;
+}
+@keyframes load1 {
+  0%,
+  100% {
+    transform: scale(1, 0.2);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes show-loader
+{
+ 0%{ opacity : 0;}
+ 100%{ opacity : 1;}
+}
+
+@keyframes show-video-elmt
+{
+ 0%{ opacity : 0;}
+ 100%{ opacity : 1;}
+}
+
+@media screen and (max-width : 1250px)
+{
+
+    button,
+    a,
+    :active
+    {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .lecteur
+    {
+        width : 70%;
+    }
+}
+
+@media screen and (max-width : 840px)
+{
+
+    .lecteur
+    {
+        width : 95%;
+    }
+
+    .lecteur div.buttons,
+    div.film .lecteur div.buttons
+    {
+        flex-direction : row
+    }
+
+    .lecteur div.buttons img
+    {
+        width : 20px;
+    }
+}
+
+@media screen and (max-width: 480px)
+{
+    .lecteur .settings-bloc
+    {
+        margin-top: 23px;
+    }
+}

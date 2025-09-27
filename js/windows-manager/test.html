@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Le Titre de la Page</title>
+    <link rel='stylesheet' href='../../css/windows-manager.css'>
+</head>
+<body>
+    <p id="x">
+    coucou t'es pd ?
+    </p>
+    <script src="../paths.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../icons.js"></script>
+    <script src="Window.js"></script>
+    <script src="StyleWindow.js"></script>
+    <script src="MessageWindow.js"></script>
+    <script src="WindowsManager.js"></script>
+
+    <script>
+        const wm = new WindowsManager;
+w = wm.newStyleWindow();
+w.show();
+w.addElmt(D.getElementById("x"));
+
+w2 = wm.message("Je prends un rendez-vous",null);
+w2.mask(true);
+w2.show();
+w2.setButtonTxt("Valider");
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+body
+{
+	text-align: center;
+}
+
+.chrono
+{
+	width: 100%;
+}
+
+.chrono .nombre
+{
+	font-weight: bolder;
+}
+
+.chrono .labels
+{
+	color: #353535;
+}

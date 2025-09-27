@@ -1,0 +1,81 @@
+div.FloatWindow
+{
+	position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 25%;
+    width: 48%;
+    padding: 1%;
+    background-color: white;
+    box-shadow: 1px 1px 2px #00000059;
+    margin-top: 10%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+div.FloatWindow.mask
+{
+    left: 0%;
+    top: 0%;
+    position: fixed;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    z-index: 9999;
+    background-color: #000000d4;
+}
+
+div.FloatWindow button.close
+{
+	width: 32px;
+    border: none;
+    background-color: initial;
+    padding: 6px;
+}
+
+div.FloatWindow div.close
+{
+	text-align: right;
+}
+
+div.FloatWindow button.close img
+{
+}
+
+div.FloatWindow div.content
+{
+    text-align: center;
+}
+
+div.FloatWindow div.moveZone
+{
+    background-color: #eaeaea;
+    width: 100%;
+    height: 22px;
+    cursor: grab;
+}
+
+div.FloatWindow div.moveZone:active
+{
+    cursor: grabbing;
+}
+
+@media (max-width : 1280px)
+{
+    div.FloatWindow
+    {
+        left: 12.5%;
+        width: 68%;
+    }
+}
+
+@media (max-width : 840px)
+{
+    div.FloatWindow
+    {
+        left: 2.5%;
+        width: 93.5%;
+    }
+}

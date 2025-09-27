@@ -1,0 +1,571 @@
+button
+{
+    cursor : pointer;
+}
+button.tchat-button
+{
+    position : fixed;
+    bottom : 0;
+    right : 0;
+    margin : 1em;
+    border : none;
+    background: #2a8342;
+    color : white;
+    padding : 1em;
+    border-radius : 5em;
+    font-size : 1em;
+    transition : color 0.3s, background 0.3s, box-shadow 0.3s, transform 0.3s;
+    z-index: 10000;
+    box-shadow: 0 0 8px #00000047;
+    width: initial;
+}
+
+button.tchat-button:hover
+{
+    box-shadow: 0 0 24px #000000b0;
+    background : white;
+    color : #2a8342;
+    z-index : 10001;
+}
+
+button.tchat-button:hover div:first-child img.icon
+{
+    filter : invert(0);
+}
+
+button.tchat-button.active
+{
+    transform : scale(0);
+}
+
+div.tchat
+{
+    position : fixed;
+    bottom : 0;
+    right : 0;
+    margin : 1em;
+    text-align : left;
+    font-size : 1em;
+    width: 25%;
+    min-width: 320px;
+    transition : width 0.3s;
+}
+
+div.tchat header
+{
+    display: flex;
+    background: #2a8342;
+    color: white;
+    padding: 1em;
+    border-radius: 0.4em 0.4em 0em 0em;
+    flex-direction: row;
+    width: calc(100% - 2em);
+    align-items: center;
+}
+
+div.tchat header div.name
+{
+    margin: 0;
+    margin-left: 0;
+    line-height: 1.1em;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+
+div.tchat header button.big
+{
+    margin: auto 0;
+    margin-right: 0;
+    background: #ffffff3d;
+    border: 2px solid white;
+    border-radius: 0.2em;
+    height: 1em;
+    padding : 0.4em;
+    width: initial;
+}
+
+div.tchat header button.filters
+{
+    border: none;
+    margin : 0;
+    margin-left: auto;
+    margin-right: 1em;
+    line-height : 0;
+    padding: 0;
+    border-radius: 0.2em;
+    width: 25px;
+    display : flex;
+    flex-direction : column;
+    background : transparent;
+}
+
+div.tchat header button.filters l
+{
+    width : 100%;
+    background : white;
+    height : 2px;
+}
+
+div.tchat header button.filters l:first-child
+{
+    margin-top : 0;
+}
+
+div.tchat header button.filters l
+{
+    margin-top : 6px;
+}
+
+div.tchat header button.big:hover
+{
+    background : white;
+}
+
+div.tchat.big
+{
+    width: 90%;
+}
+
+div.tchat div.filters-ctn
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 4px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.2em;
+    z-index : 1000;
+}
+
+div.tchat div.filters-ctn button
+{
+    border: none;
+    padding: 0.4em;
+    margin: 1px auto;
+    background: #2a8342;
+    color: white;
+    width: 100%;
+}
+
+
+div.tchat header button.close
+{
+    margin: auto;
+    margin-right: 0;
+    padding: 0em 1.2em;
+    margin-left: 0;
+    background-color: transparent;
+    border: none;
+    width: initial;
+    position: static;
+}
+
+div.tchat header button.close:before, 
+div.tchat header button.close:after 
+{
+    position: absolute;
+    content: ' ';
+    height: 24px;
+    top : 12px;
+    width: 2px;
+    background-color: white;
+}
+
+div.tchat header button.close:active
+{
+    filter : none;
+}
+
+div.tchat header button.close:before {
+  transform: rotate(45deg);
+}
+div.tchat header button.close:after {
+  transform: rotate(-45deg);
+}
+
+div.tchat div.msgs
+{
+    min-height: 20em;
+    max-height : 40em;
+    background: linear-gradient(
+10deg, #bcedc6, #ffffff);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1em;
+}
+
+div.tchat div.msgs div.infos
+{
+    margin: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    height : 1.5em;
+}
+
+div.tchat div.msgs div.infos.error
+{
+    color : red;
+}
+
+div.tchat div.msgs div.msgs-interior
+{
+    margin: auto;
+    margin-top: 0;
+    overflow: auto;
+    min-height: 10em;
+    max-height: 22em;
+    padding: 1em;
+    width: calc(100% - 2em);
+    transition: max-height 0.3s;
+}
+
+div.tchat.big div.msgs div.msgs-interior
+{
+    max-height : 34em;
+}
+
+div.tchat footer
+{
+    text-align: right;
+    padding: 0.5em;
+    background: #2a8342;
+    border-radius: 0 0 0.4em 0.4em;
+    width: calc(100% - 1em);
+}
+
+div.tchat div.writer-container
+{
+    border-top: 1px solid #338342;
+    width: calc(100% - 2px);
+    border: 1px solid #338342;
+}
+
+div.tchat footer button
+{
+    border: none;
+    color: #2a8342;
+    background: white;
+    padding: 0.4em 0.8em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 0.4em;
+    margin: auto;
+    transition : background 0.3s, color 0.3s;
+    margin-right:0;
+    width: initial;
+}
+
+div.tchat footer button:hover
+{
+    background: #2a8342;
+    color: white;
+}
+
+div.tchat div.txtWriter div.header
+{
+    background: #338342;
+    padding: 0.7em;
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 1.4em);
+}
+
+div.tchat div.txtWriter div.header button
+{
+    background: transparent;
+    filter: invert(1);
+    line-height: 0;
+    padding: 0;
+    width: 24px;
+}
+
+div.tchat div.txtWriter div.writer
+{
+    margin: 0;
+    width: calc(100% - 2em);
+    padding: 1em;
+    max-height: 10em;
+    height: initial;
+    min-height: 5em;
+    margin: auto;
+    color : black;
+    line-height: 1.1em;
+}
+
+@keyframes show-tchat
+{
+    0%{transform : translate(10em, 10em) scale(0.0);}
+    100%{transform : translate(0em, 0em) scale(1.0);}
+}
+
+div.tchat div.msg
+{
+    margin-bottom : 0.5em;
+    position : relative;
+}
+
+div.tchat div.msg.deleting main,
+div.tchat div.msg.sending main
+{
+    opacity: 0.3;
+}
+
+div.tchat div.msg header
+{
+    background: transparent;
+    color: grey;
+    text-align: left;
+    font-style: italic;
+    font-size: 0.8em;
+    padding: 0;
+    padding-bottom: 0.3em;
+    display : block;
+    position: relative;
+    z-index: 1;
+}
+
+div.tchat div.msg header *
+{
+    width: initial;
+    display: inline;
+    color: grey;
+}
+
+div.tchat div.msg.me header
+{
+    text-align : right;
+}
+
+div.tchat div.msg main
+{
+    background: white;
+    padding: 0.8em;
+    border-radius: 0.8em;
+    padding-bottom: 0.7em;
+    margin: auto;
+    width: calc(85% - 1.6em);
+    margin-left : 0;
+    transition : opacity 0.3s;
+    color : black;
+    border : none;
+    display: block;
+    font-size: 0.9em;
+}
+
+div.tchat div.msg.me main
+{
+    background: #338342;
+    color: white;
+    margin-left : auto;
+    margin-right : 0;
+}
+
+div.tchat div.msg footer
+{
+    display: flex;
+    margin: auto;
+    margin-top: -2.3em;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s, width 0.3s;
+    pointer-events: none;
+    position: absolute;
+    z-index: 100;
+    margin-left: 70%;
+    background : white;
+    width: initial;
+    flex-direction: row;
+}
+
+div.tchat iframe
+{
+    width: 100%;
+    border-radius: 0.2em;
+}
+
+div.tchat div.msg footer button
+{
+    width: 15px;
+    background: transparent;
+    padding: 0;
+    line-height : 0;
+    margin: auto 0.1em;
+}
+
+div.tchat div.msg footer.editing
+{
+    opacity: 1;
+    pointer-events: initial;
+    transform: translate(2em, 2.6em);
+    box-shadow: 0 0 9px #0000007d;
+}
+
+div.tchat img
+{
+    width: 100%;
+    display: block;
+    max-width: 250px;
+    margin: auto;
+    margin-left: 0;
+    border-radius: 0.2em;
+}
+
+div.tchat img.clickable
+{
+    cursor : pointer;
+    transition : box-shadow 0.3s;
+}
+
+div.tchat img.clickable:hover
+{
+    box-shadow: 0 0 25px #000000ba;
+}
+
+@media (max-width : 420px)
+{
+    div.tchat
+    {
+        margin: 0.2em;
+        width: calc(100% - 0.4em);
+        min-width: initial;
+    }
+}
+
+button.tchat-button div.alert
+{
+    position: absolute;
+    background: red;
+    border-radius: 5em;
+    padding: 0.7em 0.51em;
+    line-height: 0;
+    font-size: 1.4em;
+    font-weight: bolder;
+    box-shadow: 0 0 5px #00000052;
+    transition: transform 0.3s;
+    width: initial;
+    display: block;
+    margin: initial;
+    margin-top: -1.5em;
+}
+
+button.tchat-button div.alert.hidden
+{
+    transform :scale(0);
+}
+
+button.tchat-button div:first-child
+{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+button.tchat-button div:first-child img.icon
+{
+    margin : auto;
+    max-width : 24px;
+    margin-right: 0.6em;
+    filter: invert(1);
+}
+
+.msg div.end
+{
+    display: flex;
+    width: 19%;
+    padding-top: 0.2em;
+    margin-left: 0.5em;
+    flex-direction: row;
+}
+
+.msg.me div.end
+{
+    margin-left : auto;
+    margin-right : 0.5em;
+}
+
+.msg div.end img, 
+.msg div.end span
+{
+    margin : auto;
+    width : 50%;
+    font-size: 0.8em;
+}
+
+.msg div.end img.icon
+{
+    max-width : 14px;
+}
+
+@media (max-height : 850px)
+{
+    div.tchat div.txtWriter div.writer
+    {
+        min-height:1em;
+        max-height : 4em;
+    }
+
+    div.tchat div.msgs div.msgs-interior
+    {
+        min-height: 1em;
+    }
+
+    div.tchat div.msgs
+    {
+        min-height: 5em;
+        max-height: 700px;
+    }
+}
+
+@media (max-height : 480px)
+{
+    div.tchat div.txtWriter div.writer
+    {
+        min-height:1em;
+        max-height : 0em;
+    }
+
+    div.tchat div.msgs div.msgs-interior
+    {
+        min-height: 0em;
+    }
+
+    div.tchat div.msgs
+    {
+        min-height: 0em;
+        max-height: 200px;
+    }
+}
+
+@media (max-height : 250px)
+{
+    div.tchat div.txtWriter div.writer
+    {
+        min-height:1em;
+        max-height : 0em;
+    }
+
+    div.tchat div.msgs div.msgs-interior
+    {
+        min-height: 0em;
+    }
+
+    div.tchat div.msgs
+    {
+        min-height: 0em;
+        max-height: 80px;
+    }
+}
+
+@media (max-width : 840px)
+{
+    button.tchat-button
+    {
+        font-size: 0.7em;
+        touch-action: none;
+    }
+}

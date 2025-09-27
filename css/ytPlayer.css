@@ -1,0 +1,121 @@
+div.video
+{
+    margin : 1em auto;
+    text-align : center;
+}
+iframe
+{
+    display: block;
+    margin: auto;
+}
+div.video div.youtube img.yt
+{
+    cursor : pointer;
+    max-width : initial; 
+    min-width : initial;
+    width : 50%;
+    float:none;
+    margin : auto;
+    display : inline-block;
+}
+div.video div.youtube img.logo
+{
+    position: absolute;
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index : 1;
+    transition : opacity 0.2s;
+    box-shadow : none;
+    float : none;
+    display : inline-block;
+}
+
+div.video div.youtube img.logo:hover
+{
+    opacity: 1;
+}
+
+div.video.live
+{
+    display: flex;
+    align-content: center;
+}
+
+div.google
+{
+    margin: auto;
+    width: 30%;
+    padding: 1em;
+    border-radius: 0.2em;
+    background-color: #313131;
+}
+
+div.google p 
+{
+    width : 95%;
+}
+
+div.google button
+{
+    background-color: #1a73e8;
+    transition-duration : 0.3s;
+    border-radius : 0.2em;
+}
+
+div.google button:hover
+{
+    color : #1a73e8;
+    background-color: #fff;
+}
+
+div.video.live iframe.youtube
+{
+    margin: auto;
+    margin-right: 2.5em;
+}
+
+div.video.live iframe.tchat
+{
+    margin: 0 auto;
+    margin-left: 2.5em;
+    min-width: 480px;
+}
+
+@media (max-width : 1280px)
+{
+    div.video div.youtube img.yt
+    {
+        width : 75%;
+    }
+}
+
+@media (max-width : 840px)
+{
+    div.video div.youtube img.yt
+    {
+        width : 95%;
+    }
+
+    div.video.live
+    {
+        flex-direction : column;
+    }
+
+    div.video.live iframe.youtube,
+    div.video.live iframe.tchat
+    {
+        margin-right : auto;
+        margin-left : auto;
+    }
+
+    div.video.live iframe.tchat
+    {
+        margin-top : 1.5em;
+        min-width : initial;
+        width : 95%;
+        min-height : 640px;
+    }
+}

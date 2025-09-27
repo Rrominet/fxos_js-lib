@@ -1,0 +1,12 @@
+div.audio-viz-rt
+{
+    display : flex;
+    align-content : center;
+    padding-top : 30px;
+    padding-bottom : 30px;
+}
+
+div.audio-viz-rt .line
+{
+    background: #007ad1;
+}

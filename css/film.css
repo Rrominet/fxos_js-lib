@@ -1,0 +1,277 @@
+body
+{
+    margin : auto; 
+    padding : 0;
+    text-align : center;
+}
+
+div.film
+{
+    text-align : left;
+}
+
+div.film video.bg-img,
+div.film img.bg-img
+{
+    width : initial;
+    max-width : initial;
+    height : initial;
+    max-height : initial;
+    position: fixed;
+    left : 0;
+    top : 0;
+    z-index : -10;
+    margin : 0;
+    margin-top : 0;
+}
+
+div.film div.buttons
+{
+    display : flex; 
+    align-items: center;
+    padding : 1em;
+}
+
+div.film button img
+{
+    width : initial;
+}
+
+div.film div.buttons button
+{
+    border: none;
+    background-color: white;
+    border-radius: 0.3em;
+    display: flex;
+    padding: 1em 1.9em;
+    cursor : pointer;
+    align-items: center;
+    font-size: 1.2em;
+    transition : background-color 0.3s, color 0.3s, filter 0.3s;
+    color : black;
+    margin : auto;
+    margin-top : 1.5em;
+    font-weight : initial;
+    min-height: 5em;
+}
+
+button.master
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 1.2em;
+    box-shadow: 0 0 40px #333333;
+    margin: auto;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    line-height: 1.5em;
+}
+
+.show-anim
+{
+    animation : show-elmt 0.5s;
+}
+
+@keyframes show-elmt
+{
+ 0%{ opacity : 0; transform : translate(-50%, -50%) scale(0.8);};
+ 100%{ opacity : 1; transform : translate(-50%, -50%) scale(1);}
+}
+
+div.film div.buttons button:hover
+{
+    filter : invert(1);
+}
+
+div.film div.buttons button:first-child *:first-child,
+div.film div.buttons button:first-child
+{
+    margin-right : 1em;
+}
+
+div.film div.fg
+{
+    position: relative;
+    padding: 8em 3em;
+    width: calc(100% - 6em);
+    min-width: 300px;
+    background: linear-gradient(90deg, black, transparent);
+    color: white;
+}
+
+div.film div.title img
+{
+    margin-left : 1em;
+}
+
+div.film div.fg div.title
+{
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0.6em;
+}
+
+div.film div.fg div.resume
+{
+    margin-bottom: 1.6em;
+    width: 760px;
+    padding-bottom: 1em;
+    border-bottom: 1px solid;
+}
+
+div.film div.lecteur-container
+{
+    background-color : black;
+    position:fixed;
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    z-index: 1000;
+}
+
+div.film div.chrono
+{
+    font-size: 1.2em;
+    padding: .5em;
+    padding-bottom: 1em;
+    font-weight: bold;
+}
+
+div.film div.chrono .labels
+{
+    font-weight : normal;
+    font-size : 0.8em;
+    font-style : italic;
+}
+
+div.film div.lecteur
+{
+    width: 83%;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    margin : auto;
+}
+
+div.film button.close
+{
+    width : 50px;
+    height : 50px;
+    border : none; 
+    padding : 0;
+    background-color : rgba(0,0,0,0);
+    z-index : 100;
+    position : absolute;
+    opacity : 1; 
+    transition-duration : 0.3s;
+    margin : auto;
+}
+
+
+div.film button.close:before, 
+div.film button.close:after 
+{
+    position: absolute;
+    content: ' ';
+    height: 50px;
+    top : 30px;
+    width: 4px;
+    border-radius: 3px;
+    background-color : white;
+    margin-top: -25px;
+}
+
+div.film button.close:before {
+  transform: rotate(45deg);
+}
+div.film button.close:after {
+  transform: rotate(-45deg);
+}
+
+@media (max-width : 1250px)
+{
+    div.film div.fg
+    {
+        padding : 2em;
+        max-width : calc(100% - 6em);
+    }
+
+    div.film div.fg div.resume
+    {
+        line-height : 1.6em;
+    }
+
+    div.film div.title img
+    {
+        max-width: 40%;
+    }
+
+    div.film div.buttons button
+    {
+        font-size : 1em;
+    }
+}
+
+@media (max-width : 840px)
+{
+
+    button.master
+    {
+        width : 98%;
+    }
+
+    div.film div.fg
+    {
+        padding : 1em;
+        width : calc(100% - 2em);
+        margin-left : 0;
+        margin : auto;
+        min-width : 100px;
+        background: linear-gradient(#0000004a, #000000e3);border-radius : 0;
+        max-width : initial;
+    }
+
+    div.film img.bg-img
+    {
+        object-fit : cover;
+    }
+
+    div.film div.title img
+    {
+        max-width : 100%;
+        margin-left : auto;
+    }
+
+    div.film div.fg div.resume
+    {
+        width : 100%;
+        line-height : 2em;
+    }
+
+    div.film div.buttons button
+    {
+        padding: 1em 1.6em;
+        font-size: 1em;
+        width: fit-content;
+    }
+
+    div.film div.buttons
+    {
+        flex-direction: column;
+    }
+
+    div.film div.buttons button:first-child
+    {
+        margin-right : auto;
+        margin-bottom : 1em;
+    }
+
+    div.film div.buttons button img
+    {
+        width: 40px;
+    }
+
+}

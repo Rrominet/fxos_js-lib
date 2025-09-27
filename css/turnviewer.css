@@ -1,0 +1,38 @@
+body
+{
+    margin : 0; 
+    padding : 0; 
+}
+.turnviewer
+{
+    display : flex;
+    cursor: grab;
+}
+
+.turnviewer.dragging
+{
+    cursor : grabbing;
+}
+
+.turnviewer .load
+{
+    position : absolute;
+    width: 25%;
+    text-align: center;
+    z-index: 100;
+    margin-top: 2em;
+    margin-left : calc(38% - 2em);
+    background-color: #4a739973;
+    padding: 1em;
+    border: solid 2px #4a7399;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1em;
+    border-radius: 0.2em;
+}
+
+.turnviewer img
+{
+    position : relative; 
+    width : 100%;
+}

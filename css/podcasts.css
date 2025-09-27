@@ -1,0 +1,234 @@
+div.podcastList
+{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+}
+
+div.podcastList h2
+{
+    margin: auto;
+    text-align: left;
+    margin-left: 2em;
+}
+
+div.podcast
+{
+    text-align: center;
+    padding: 1em;
+    width: calc(50% - 2em);
+    margin: auto;
+    line-height: 2em;
+    border-radius: 0.3em;
+    margin-bottom: 0.5em;
+}
+
+div.podcast h3
+{
+    margin: 0.7em auto;
+    color: white;
+    width: calc(80% - 2em);
+    font-weight: bold;
+    border-radius: 0.2em;
+}
+
+div.podcast div.sound
+{
+    display: flex;
+    align-items: center;
+}
+
+div.podcast button.comment
+{
+    background-color: white;
+    margin: auto;
+    margin-right: 0;
+    padding: 0.5em;
+    border-radius: 1.5em;
+}
+
+div.podcast div.comment
+{
+    margin-top :  1em;
+}
+
+div.podcast div.read-comment
+{
+    color: white;
+    text-align: left;
+    padding: 1em;
+    border-top: 1px solid white;
+}
+
+div.podcast div.comments
+{
+    margin-top: 1em;
+}
+
+div.podcast div.read-comment div.msg
+{
+    font-style : italic;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+    line-height: 1.2em;
+}
+
+div.podcast div.comment textarea
+{
+    font-family: system-ui;
+    padding : 1em;
+    border-radius : 0.2em;
+	border : none;
+	width : 100%;
+	margin-top : 1em;
+	display : block;
+}
+
+div.podcast div.comment button
+{
+    background-color: white;
+    color: rgb(0, 151, 61);
+    font-size : 1em; 
+    font-weight : bold; 
+    text-transform : none;
+}
+
+.comment input
+{
+	padding : 1em;
+	display : block;
+	width : calc(100%);
+	border-radius : 0.2em;
+	border : none;
+}
+
+div.podcast button.comment img.icon
+{
+    width: 32px;
+}
+
+div.podcastList div.header
+{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    padding-bottom : 1em;
+    margin-bottom : 1em;
+    border-bottom : 1px solid
+}
+
+img.icon
+{
+    width:48px;
+}
+
+div.podcastList button.eval
+{
+    display: flex;
+    align-items: center;
+    padding: 0.8em 2em;
+    text-transform : none;
+    font-size : 1em;
+    margin : auto;
+}
+
+div.podcastList div.header button.eval
+{
+    margin-right : 0;
+}
+
+div.podcastList button.eval:hover
+{
+    box-shadow: 0 0 20px #00000029;
+}
+
+div.podcastList button.eval img
+{
+    margin-right: 2em;
+}
+
+.podcastList h2
+{
+    margin-top : initial;
+}
+
+div.podcast audio
+{
+	width: 80%;
+    margin: auto;
+}
+
+button.see-all-podcasts
+{
+    position : fixed;
+    z-index : 10;
+    bottom : 0;
+    right : 0;
+    margin : 1em;
+}
+
+@media screen and (max-width : 1250px)
+{
+    div.podcast
+    {
+        width : calc(75% - 2em);
+    }
+
+    div.podcastList div.header
+    {
+        width : 75%;
+    }
+
+}
+
+@media screen and (max-width: 840px)
+{
+    button.see-all-podcasts
+    {
+        position : fixed;
+        z-index : 10;
+        bottom : 0;
+        margin : 0.25em;
+        padding : 0.5em;
+        font-size : 0.9em;
+        left : 0;
+        width : calc(100% - 0.5em);
+        max-width : initial;
+        box-shadow: black 0 0 17px 0;
+    }
+    div.podcast h3
+    {
+        width: 90%;
+        line-height: 1.5em
+    }
+
+    div.podcast audio
+    {
+        zoom: 0.7;
+        width: 75%;
+    }
+
+    div.podcast
+    {
+        width : calc(95% - 2em);
+    }
+
+    div.podcastList div.header
+    {
+        width : 95%;
+        flex-direction: column;
+    }
+
+    div.podcast button.comment
+    {
+        border : none;
+        width : initial;
+    }
+
+    div.podcastList div.header button.eval
+    {
+        margin-right : auto;
+    }
+}
+

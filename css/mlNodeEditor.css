@@ -1,0 +1,759 @@
+body
+{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+
+    padding: 0; 
+    margin : 0;
+    font-family: sans-serif;
+}
+
+:focus
+{
+    outline : none; 
+    box-shadow: 0 0 6px #0092ffad;
+}
+
+div.nodeView
+{
+    position: relative;
+}
+
+div.nodeView div.nodes
+{
+    background-color: #444444;
+    background-image: url(https://motion-live.com/frameworks/images/mlNodeEditor/grill.png);
+
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%; 
+    height: 100%;
+}
+
+div.nodeView div.elmt label.id
+{
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: right;
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+div.EmailContent label
+{
+    display: flex;
+    width: auto;
+    padding: 1em;
+}
+
+div.EmailContent label select
+{
+    margin-left: 2em;
+}
+
+div.EmailContent label span
+{
+    width: 25%;
+    text-align: left;
+}
+
+div.EmailContent div.writer[contenteditable="true"] div
+{
+    display: initial;
+    width : initial;
+    margin : initial;
+    padding : initial;
+    background-color : initial;
+}
+
+
+div.nodeView div.nodes
+{
+    z-index: 1;
+}
+
+div.nodes div.elmt
+{
+    position: absolute;
+    border: 3px #b5b5b5 solid;
+    border-radius: 16px;
+    min-width: 177px;
+    min-height: 50px;
+    font-family: sans-serif;
+    z-index: 1;
+    padding: 15px;
+    color: #ababab;
+    background-color: #2b2b2b;
+}
+
+div.nodes div.node
+{
+    background-color: #2b2b2b;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px #00000047;
+    text-align: center;
+    color: #ababab;
+    z-index: 3;
+}
+
+div.nodes div.container
+{
+    opacity: 0.7;
+}
+
+div.nodes div.container h2.label
+{
+    font-size: 1em;
+    text-align: center;
+    padding: 2px;
+    border-radius: 3px; 
+}
+
+div.nodes div.container div.resize
+{
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+div.nodes  div.elmt.selected
+{
+    border-color: #00a953;
+}
+
+div.nodes div.elmt:active
+{
+    cursor: -webkit-grabbing;
+}
+
+div.elmt .label
+{
+    font-size: 1.3em;
+    margin-top: 0px;
+    padding: 12px 8px;
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+div.elmt .modify
+{
+    position: absolute;
+    z-index : 10;
+}
+
+div.node .socket
+{
+    font-size : 0.8em;
+}
+
+div.node .socket, div.node button 
+{
+    z-index: 8;
+    margin: 10px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+div.node .socket.input
+{
+    text-align: left;
+}
+
+div.node .socket.output
+{
+    text-align: right;
+}
+
+div.node .content
+{
+    display: block;
+    margin: 15px 0px;
+    text-align: center;
+    min-width: 100%;
+    font-weight: bold;
+}
+
+div.node button
+{
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+div.node button:active
+{
+    background-color: #87a6ab;
+}
+
+.socket .point
+{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border: solid black 2px;
+    border-radius: 15px;
+}
+
+.socket .point.yellow
+{
+    background-color: #ffb100;
+}
+
+.socket .point.red
+{
+    background-color: #d20000;
+}
+
+.socket .point.green
+{
+    background-color: #00b941;
+}
+
+.socket .point.white
+{
+    background-color: #e2e2e2;
+}
+
+.socket .point.grey
+{
+    background-color: #757575;
+}
+
+.socket .point.black
+{
+    background-color: #212121;
+}
+
+.socket .point.purple
+{
+    background-color: #b200ec;
+}
+
+.socket.input .point
+{
+    margin-left: -35px;
+}
+
+.socket.output .point
+{
+    right: 0px;
+    margin-right: -11px;
+}
+
+.socket .point:hover
+{
+    box-shadow: 0 0 4px #0000008a
+}
+
+.socket .name
+{
+    color: grey;
+}
+
+.mlEdge
+{
+    position : absolute;
+    height:3px; 
+    background-color: #b7b7b7;
+    z-index: 0;
+    cursor : pointer;
+    z-index : 2;
+}
+
+.mlEdge:hover
+{
+    height:4px; 
+    background-color: #cca676
+}
+
+.mlEdge.selected
+{
+    background-color: #00a953;
+}
+
+.nodes .selectRect
+{
+    position: absolute;
+    background-color: #0072ff38;
+    z-index: 20;
+    border: solid #6ea9e6 2px;
+    border-radius: 2px;
+}
+
+.EmailContent.content
+{
+    background-color: #ececec;
+    width: 42%;
+    height: 94%;
+    position: fixed;
+    top: 47px;
+    left: 57.6%;
+    z-index: 100;
+    box-shadow: 1px 1px 4px #00000085;
+    overflow: auto;
+}
+
+.EmailContent.content .object input{
+    width: 620.4px;
+}
+
+.EmailContent.content div, .EmailContent.content textarea
+{
+    display : inline-block;
+    width: 90%;
+    margin : 2.5%;
+    padding : 2.5%;
+    background-color: white;
+}
+
+.EmailContent.content textarea
+{
+    border : none;
+    box-shadow: 1px 2px 4px #0000003d;
+}
+
+.EmailContent.content .result
+{
+    height: 100%;
+    position: fixed;
+    overflow-y: auto; 
+}
+
+div.node .content .time.days
+{
+    text-align: right;
+}
+
+div.node .content .time.month
+{
+    text-align: left;
+}
+
+div.node  div.listener
+{
+    text-align: right;
+    margin-bottom: 12px;
+}
+
+div.node  div.listener img
+{
+    max-width: 32px;
+}
+
+button.mlNodeEditor.server
+{
+    position: fixed;
+    bottom: 0;
+    z-index: 40;
+    padding: 10;
+    right: 0;
+    margin: 25px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+    color:black;
+    background-color: white;
+    transition-duration: 0.2s;
+}
+
+button.mlNodeEditor.server:hover
+{
+    color:white;
+    background-color: black;
+    box-shadow: 0 0 9px #00000040;
+}
+
+button.mlNodeEditor.server.execute
+{
+    margin-right: 150px;
+    color: #9e0000;
+}
+
+button.mlNodeEditor.server.execute:hover
+{
+    margin-right: 150px;
+    background-color: #9e0000;
+    color: white;
+}
+
+button.mlNodeEditor.server.test
+{
+    margin-right: 232px;
+    color: #066500;
+}
+
+button.mlNodeEditor.server.test:hover
+{
+    background-color: #066500;
+    color: white;
+}
+
+label.mlNodeEditor.server
+{
+    margin-bottom: 82px;
+    margin-right: 32px;
+    position: fixed;
+    z-index: 100;
+    right: 0;
+    bottom: 0;
+    background-color: #1c613d;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px #0000007d;
+}
+
+label.mlNodeEditor.save
+{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background-color: #009434;
+    color: white;
+    padding: 10px;
+    border-radius: 2px;
+    margin: 10px;
+}
+
+div.footer div.buttons
+{
+    text-align : right;
+}
+
+button
+{
+    transition-duration: 0.2s;
+    outline:none;
+}
+
+div.floatWindow button
+{
+    cursor: pointer;
+    border: none;
+    background-color: #e2e2e2;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+div.floatWindow button.open
+{
+    background-color: #28923a;
+    color: white;
+}
+
+div.floatWindow button.open:hover
+{
+    color: #28923a;
+    background-color: white;
+}
+
+div.floatWindow button.save
+{
+    background-color: #0086b9;
+    color: white;
+}
+
+div.floatWindow button.save:hover
+{
+    color: #0086b9;
+    background-color: white;
+}
+
+div.list
+{
+    background-color: #eaeaea;
+    border: solid 1px darkslategrey;
+    margin: 18px auto;
+    max-height: 540px;
+    overflow: auto;
+    padding: 10px;
+    text-align: left;
+}
+
+div.list div.elmt
+{
+    transition-duration: 0.1s;
+    cursor: pointer;
+    background-color: white;
+    padding: 10px;
+    padding-left: 26px;
+}
+
+div.list div.elmt:hover
+{
+    background-color: #6a796a;
+    color: white;
+}
+
+div.list div.elmt.selected
+{
+    background-color: #00983d;
+    color: white;
+    font-weight: bold;
+}
+
+select
+{
+    width: 100%;
+    padding: 0.3em;
+}
+
+div.menusContent
+{
+    height: auto;
+}
+
+div.menusContent div.fileName
+{
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: -27px;
+    font-weight: bold;
+}
+
+div.node p.error, 
+div.node p.valid 
+{
+    font-weight: bold;
+    font-style: italic;
+}
+
+div.node p.error
+{
+    color: #b30000;
+}
+
+div.node p.valid
+{
+    color: #0ab300;
+} 
+
+div.node input[type="text"]
+{
+    width: 100%;
+}
+
+div.emails-seq.interface
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    margin-top: 3%;
+    background-color: white;
+    z-index: 50;
+    border-radius: 2px;
+    box-shadow: 2px 2px 10px #0000005c;
+    text-align : left;
+}
+
+div.emails-seq.interface div.head,
+div.EmailContent.content div.head
+{
+    text-align: right;
+    padding: 7px;
+    background-color: initial;
+    margin:0;
+}
+
+div.emails-seq.interface div.content
+{
+    margin: 5px;
+    background-color: #3e3e3e;
+    height: 2500px;
+    max-height: 92.1%;
+    width: 98.3%;
+    overflow: auto;
+    border-radius: 2px;
+    padding: 0.5%;
+}
+
+div.emails-seq.interface div.footer
+{
+    background-color: white;
+    display: flex;
+    padding-bottom: 0.4em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
+
+div.emails-seq.interface div.footer button
+{
+    margin-left: auto;
+    font-weight: bold;
+    border: none;
+    padding: 0.7em 1.2em;
+}
+
+div.emails-seq.interface div.footer button:hover
+{
+    filter: invert(1);
+}
+
+div.emails-seq.interface div.content div.email
+{
+    width: 158px;
+    background-color: #888888;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 2px;
+    border-color: #5d5d5d;
+    box-shadow: 1px 1px 4px #0000003b;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 44px;
+    margin-bottom: 20px;
+}
+
+div.emails-seq.interface div.content div.email.automatic,
+div.emails-seq.interface div.content div.email.automatic.selected
+{
+    background-color: #505050;
+    color: #797979;
+    cursor: not-allowed;
+}
+
+div.emails-seq.interface div.content div.email.final
+{
+    background-color: #ab7676;
+}
+
+div.emails-seq.interface div.content div.email.final i
+{
+    display: block;
+    margin-top: 10px;
+}
+
+div.emails-seq.interface div.content div.email.selected
+{
+    background-color: #417764;
+    border-color: #151313;
+    color: white;
+}
+
+div.emails-seq.interface div.content div.email h3
+{
+    margin: 5px;
+}
+
+div.emails-seq.interface div.content div.email button.edit
+{
+    border: none;
+    padding: 6px 38px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+div.emails-seq.interface div.content div.email button.edit:active
+{
+    background-color: #467958;
+}
+
+div.emails-seq.interface div.content div.email div.date
+{
+    font-style: italic;
+    font-size: 0.9em;
+    padding-top: 0.5em;
+}
+
+div.head button.close
+{
+    border: none;
+    padding: 5px 12px;
+}
+
+div.emails-seq.interface div.email img.icon
+{
+    width: 2em;
+    position: absolute;
+    background: white;
+    border-radius: 20em;
+    border: 2px solid #f3b600;
+    margin-left: -1.8em;
+    margin-top: -2em;
+box-shadow: 0 0 11px #0000006b;}
+
+.arrow 
+{
+    border: solid #ffb600;
+    border-width: 0 6px 6px 0;
+    display: inline-block;
+    padding: 12px;
+    position: absolute;
+    margin-left: 85px;
+    margin-top: 12px;
+}
+
+.list .file
+{
+    background: white;
+    padding: 0.5em;
+    border-bottom: 1px solid;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.list .file:hover
+{
+    color : white;
+    background: #0086b9;
+}
+
+.list .file span:first-child
+{
+    margin-right: 1em;
+}
+
+.list .file span:last-child
+{
+    font-style: italic;
+    color: #5c5c5c;
+    font-size: 0.85em;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}

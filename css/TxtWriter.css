@@ -1,0 +1,422 @@
+button
+{
+    cursor:pointer;
+}
+
+div.txtWriter
+{
+	font-family: sans-serif;
+}
+
+div.writer,
+.EmailContent.content div.writer
+{
+	background-color: white;
+    box-shadow: 1px 1px 2px #0000003b;
+    padding: 13px;
+    min-height: 250px;
+    overflow: auto;
+    max-width: 100%;
+    height: 800px;
+    margin: 2%;
+    outline: none;
+    display: block;
+    text-align : left;
+    transition : box-shadow 0.3s;
+}
+
+div.writer:focus,
+.EmailContent.content div.writer:focus
+{
+    box-shadow: 0px 0px 20px #0000003b;
+}
+
+.from-elmt div.writer
+{
+    padding : 1em; 
+    min-height : initial; 
+    height : initial; 
+    overflow : initial; 
+    max-width : initial; 
+    margin : initial; 
+    display : block;
+    background-color : initial;
+    box-shadow: none;
+}
+
+.txtWriter div.header,
+.EmailContent.content div.header
+{
+	background-color: white;
+    padding: 6px;
+    text-align: center;
+    margin-bottom: 20px;
+    display : flex;
+    align-content : center;
+    margin : auto;
+    text-align : center;
+    display : none;
+}
+
+.txtWriter div.header div,
+.EmailContent.content div.header div
+{
+    border : none;
+    display: flex;
+    align-content : center;
+    margin : auto;
+    padding : 0.5em;
+    width : initial;
+}
+
+.txtWriter div.header div label,
+.EmailContent.content div.header div label,
+.txtWriter div.header div button,
+.EmailContent.content div.header div button
+{
+    margin : auto 0.2em;
+}
+
+.txtWriter div.header div.font, div.header div.forme
+{
+    padding : 0.5em;
+}
+
+.txtWriter div.header button
+{
+	width: 32px;
+    padding: 6px;
+    border: none;
+    margin: auto;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #e8e8e8;	
+    transition-duration: 0.2s;
+}
+
+.txtWriter div.header button:hover
+{
+	box-shadow: 0 0 3px #0000007a;
+}
+
+.txtWriter div.header button:active
+{
+	background-color: #cacaca;
+}
+
+.txtWriter div.header button.code img
+{
+    padding-top: 5px;
+    padding-bottom: 4px;
+}
+
+button img
+{
+	width: 100%;
+}
+
+.txtWriter div.header label.size input
+{
+	width: 40px;
+	border: none;
+    border-bottom: solid 1px grey;
+}
+
+.txtWriter div.header label.size
+{
+	margin: 0 14px;
+}
+
+.txtWriter div.header select, div.window select
+{
+    border-radius: 3px;
+    padding: 5px 13px;
+    border: none;
+    background-color: #ffffff00;
+    cursor : pointer;
+    width: initial;
+    margin : initial;
+    display: initial;
+    outline: none;
+}
+
+.txtWriter div.header select:hover, div.window select:hover
+{
+	background-color: #e8e8e8;
+}
+
+.txtWriter div.header select:active, div.window select:active
+{
+	background-color: #656565;
+    color: white;
+}
+
+.txtWriter div.window input[type="text"]
+{
+    padding: 7px;
+    width: 80%;
+    margin: 12px 0px;
+    border: none;
+    border-bottom: solid 1px grey;
+    transition-duration: 0.2s;
+}
+
+.txtWriter div.window input[type="text"]:hover
+{
+    background-color: #3A3A3D;
+    color : white;
+}
+
+.txtWriter div.window div.footer button
+{
+    margin: 15px;
+    padding: 10px 20px;
+    background-color: #dadada;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+div.window div.tabs button
+{
+    border: none;
+    background-color: transparent;
+    transition-duration: 0.2s;
+    margin: 0.3em;
+    padding: 0.3em;
+    line-height: 0;
+}
+
+div.window div.tabs button:hover
+{
+    background-color: rgba(218,218,218,1);
+}
+
+div.window div.footer button:hover
+{
+    box-shadow: 0 0 4px #00000073;
+}
+
+div.window h3 img
+{
+    width: 15px;
+    margin-right: 5px;
+}
+
+div.writer img.edit
+{
+    cursor: pointer;
+}
+
+div.window select
+{
+
+}
+
+div.window label
+{
+    display: block;
+    margin: 15px;
+}
+
+div.window input[type="range"]
+{
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    margin: 0 10px;
+    background-color: #e0e0e0;
+    margin-top: 0px;
+    width: 200px;
+    position: absolute;
+    transition-duration: 0.1s;
+}
+
+div.window input[type="range"]:hover
+{
+    background-color: #8e8e8e;
+}
+
+div.window input[type="range"]:active
+{
+    background-color: #5a5a5a;
+}
+
+div.window .left
+{
+    text-align: left;
+    transform : initial;
+    -webkit-transform : initial;
+}
+
+div.window button.valid
+{
+    color : white; 
+    background-color: rgb(0, 151, 61);
+}
+
+div.window h3 img
+{
+    width: 21px;
+}
+
+div.window .tabs button
+{
+    line-height: 0;
+    padding: 2px;
+    background-color: white;
+    margin: 1em;
+}
+
+div.window .tabs button.active
+{
+    background: #39b159;
+}
+
+div.window .tabs button img
+{
+    width: 24px;
+    margin: auto;
+}
+
+textarea.code,
+.EmailContent.content textarea.code
+{
+    background-color: rgb(62, 62, 62);
+    border: none;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
+    overflow: auto;
+    width: 96%;
+    margin: 2%;
+    min-height: 250px;
+    color: rgb(241, 241, 241);
+    font-weight: bold;
+    padding: 1%;
+}
+
+div.comment
+{
+    position: fixed;
+    width: 25%;
+    padding : 0.1em;
+    background: white;
+    box-shadow: 0 0 5px #00000063;
+    top: 0;
+    right: 0;
+    margin: 0;
+    margin-right: 1em;
+    font-family: sans-serif;
+    transition : background 0.2s, margin 0.2s, opacity 0.3s;
+    z-index : 500;
+    cursor : pointer;
+}
+
+.comment.left
+{
+    transform: initial;
+}
+
+div.comment.left,
+div.comment.focus.left
+{
+    margin-right : 50%;
+}
+
+div.comment.focus
+{
+    margin: 2em;
+    z-index : 1000;
+    padding: 1em;
+}
+
+div.comment div
+{
+
+}
+
+div.comment div.user, div.comment div.data
+{
+    border-radius: 0.2em;
+    text-align : left;
+    margin : auto;
+}
+
+div.comment div.data
+{
+    overflow : auto;
+    min-height : initial;
+    margin : auto;
+    cursor : pointer;
+}
+
+div.comment.focus div.data
+{
+    min-height: 5em;
+    max-height : 15em;
+    padding : 0.2em;
+    margin: 1em auto;
+    background: #e1e1e1;
+    cursor : initial;
+}
+
+div.comment div.user
+{
+    margin-bottom : 0;
+    margin-bottom: 0;
+    font-style: italic;
+    cursor : initial;
+    display : none;
+}
+
+div.comment.focus div.user
+{
+    display : block;
+    background: #e1e1e1;
+}
+
+div.comment div.data:focus
+{
+}
+
+div.comment button.close
+{
+    border: none;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+    display : none;
+}
+
+div.comment button.close img
+{
+    width: 24px;
+    padding: 0;
+    margin: auto;
+}
+
+div.comment.focus button.close
+{
+    display : block;
+}
+
+span.comment
+{
+    background: #bddaff;
+    border-radius: 0.2em;
+    padding: 0 0.2em;
+}
+
+span.comment.focus
+{
+    background: #8fc0ff;
+}
+
+span.comment.inactive,
+span.comment.focus.inactive
+{
+    background : initial;
+    padding : 0;
+}

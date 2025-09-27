@@ -1,0 +1,470 @@
+.tchat button
+{
+    background-color: #ffffff00;
+    border: none;
+    cursor: pointer;
+}
+
+.tchat button.reduce
+{
+    padding: initial;
+}
+
+div.tchat.parent
+{
+    z-index: 150;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0;
+    margin-right: 50px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 2px #0000008f;
+    border-radius: 11px 11px 0px 0px;
+    width: 25%;
+    min-width: 350px;
+    transition-duration: 0.25s;
+}
+
+div.tchat.parent.reduced
+{
+    transform: translateY(90%);
+}
+
+div.tchat div.txtWriter .header
+{
+	background-color: #ff7600;
+    padding: 10px 15px;
+    color: white;
+    text-align: left;
+}
+
+div.tchat .header
+{
+    padding: 0.9em;
+    text-align: left;
+    color: white;
+}
+
+div.tchat .header.green,
+div.tchat .msg button.send.green,
+div.tchat .msg.green .header
+{
+    background-color: #41a248;
+}
+
+div.tchat.reduced .header
+{
+    cursor : pointer;
+}
+
+div.tchat .header font
+{
+	margin : 0px 10px;
+}
+
+div.tchat .header font.nom
+{
+    font-weight: bold;
+    margin-left: 49px;
+}
+
+div.tchat .header font.poste
+{
+	font-style: italic;
+}
+
+div.tchat .msgs
+{
+	min-height: 350px;
+    overflow-y: auto;
+    background-color: #ececec;
+    padding: 10px;
+}
+
+div.msg textarea
+{
+	background-color: white;
+    width: 93%;
+    border: 1px solid rgb(255, 118, 0);
+    padding: 10px;
+    height: 80px;
+}
+
+.tchat button.send
+{
+	background-color: #ff7600;
+    color: white;
+    transition-duration: 0.3s;
+    padding: 10px 15px;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    float: right;
+    margin: 0;
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.tchat button.send:disabled,
+.tchat button.send:disabled:hover,
+.tchat button.send.green:disabled,
+.tchat button.send.green:disabled:hover,
+div.tchat .msg button.send.green:disabled,
+div.tchat .msg button.send.green:disabled:hover
+{
+	background-color: #888888;
+    color: #b7b7b7;
+    cursor: not-allowed;
+}
+
+
+div.tchat .msg
+{
+    background-color: white;
+}
+
+div.tchat .msg.disabled
+{
+    pointer-events: none; 
+    cursor : not-allowed; 
+    background-color : grey;
+:wa
+}
+
+div.tchat .msg.disabled:before
+{
+    content : "Tu dois attendre quelques secondes pour envoyer un autre message pour ne pas saturer le Tchat.";
+    color : red;
+    padding : 0.5em;
+    font-style : italic;
+    background-color : white;
+    display : block;
+}
+
+.tchat button.reduce
+{
+	float: right;
+    width: 27px;
+    position: relative;
+    margin : 0;
+    margin-top: 6px;
+    height: 4px;
+    background-color: white;
+    transition-duration: 0.3s;
+}
+
+.tchat button.reduce:hover
+{
+    box-shadow: 0 0 4px #00000047;
+}
+
+.tchat button.send:hover
+{
+	background-color: white; 
+	color : #ff7600;;
+}
+
+div.tchat .msgs .message
+{
+    text-align : left;    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+div.tchat .msgs .message.mine
+{
+    align-items: flex-end;
+}
+
+div.tchat .msgs .message p
+{
+    background-color: white;
+    border-radius: 1em;
+    text-align: left;
+    padding: 1em;
+    margin-top: 0em;
+    width: fit-content;
+    min-width: 50%;
+    max-width: 80%;
+    padding-bottom: .5em;
+}
+
+div.progress div.progressBar.back
+{
+    margin-top : 0.5em;
+}
+
+div.tchat .msgs .message.mine p
+{
+    color: white;
+    background-color: #008c41;
+}
+
+.msgs .message img.clickable
+{
+    cursor : pointer;
+    transition : box-shadow 0.3s;
+}
+
+.msgs .message img.clickable:hover
+{
+    box-shadow: 0 0 10px 0px #0000003b;
+}
+
+div.tchat .infos
+{
+    text-align: left;
+}
+
+div.tchat .msgs .infos date
+{
+    font-style: italic;
+}
+
+button.tchatLabel
+{
+    padding: 1em;
+    background-color: #ff9a43;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    display: inline-block;
+    margin: 1px;
+    border: none;
+    display : flex;
+    align-items : center;
+}
+
+.tool .tchats button.tchatLabel.readed
+{
+    background-color: #74b783;
+    font-weight : initial;
+}
+
+button.tchatLabel div.nom
+{
+    align-content: flex-start;
+    margin-left: 2em;
+}
+
+button.tchatLabel button
+{
+    width: 40px;
+    align-items: flex-end;
+    margin-right: 2em;
+    margin-left: auto;
+}
+
+button.tchatLabel.readed button
+{
+    filter : contrast(.5);
+}
+
+div#tchatsList button.tchatLabel
+{
+	width: 30%;
+}
+
+button.tchatLabel:hover
+{
+    color:#ff9a43;
+    background-color: white;
+}
+
+div.tchat .header img.profil
+{
+    width: 30px;
+    border-radius: 50px;
+    position: absolute;
+    margin-top: -4px;
+}
+
+@media only screen and (max-screen-height: 900px)
+{
+    div.tchat .msgs
+    {
+        max-height: 400px;
+    }   
+}
+
+.msg .txtWriter .header
+{
+    min-height: 0;
+    margin: 0;
+    padding: 4px;
+}
+
+.msg .txtWriter .header button
+{
+    line-height: 0;
+    background-color: initial;
+    margin: 0;
+    padding : 0.2em;
+}
+
+.msg .txtWriter .writer
+{
+    padding: 1em;
+    box-shadow: inset 0px 1px 8px #0000001f;
+    border-radius: 0px 0px 0px 7px;
+    margin-bottom: 1em;
+    max-height: 125px;
+    overflow: auto;
+    outline: none;
+    min-height: 0;
+    margin : 0;
+    text-align: left;
+}
+
+img.icon
+{
+    width : 22px;
+}
+
+.msgs .message 
+{
+    font-family: sans-serif;
+    margin-top: 0.5em;
+}
+
+div.tchat .msgs .message.failed p 
+{
+    background-color: #afafaf;
+    color: #5f5f5f;
+}
+
+div.tchat .msgs .message.failed div.error
+{
+    margin-top: -0.4em;
+    text-align: left;
+    margin-left: 2em
+}
+
+div.tchat .msgs .message.failed button
+{
+    padding: 0.9em 0.8em;
+    background-color: white;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    box-shadow: 0 0 3px #00000021;
+    transition: box-shadow 0.3s;
+    line-height: 0;
+}
+
+div.tchat .msgs .message.failed button:hover
+{
+    box-shadow: 0 0 10px 0px #0000003b;
+}
+
+.msgs .message.short
+{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid;
+    padding-top: 0.2em;
+}
+
+.msgs .message.short font.infos
+{
+    font-size: 0.9em;
+}
+div.tchat .msgs .message.short p
+{
+    margin-left: 0.2em;
+    padding: 0;
+    box-shadow: initial;
+    border-radius: 0;
+    background-color: initial;
+    font-size: 0.9em;
+    padding-bottom: 0em;
+    padding-left: 0.2em;
+}
+
+.msgs .message iframe.player,
+.msgs .message .player iframe,
+.msgs .message img,
+.txtWriter .writer iframe.player,
+.txtWriter .writer .player iframe,
+.txtWriter .writer img
+{
+    max-width: 95%;
+    margin: 2.5%;
+    border-radius: 4px;
+    max-height: 250px;
+}
+
+button.tchatLabel
+{
+    width : 50%;
+}
+
+@media (max-width: 840px)
+{
+    button.tchatLabel
+    {
+        width: 99%;
+        margin: 0.2em auto;
+        padding: 2em 0;
+    }
+
+    button.tchatLabel:last-child
+    {
+        margin-bottom: 5em;
+    }
+
+    div.tchat .msgs
+    {
+        overflow-y: auto;
+        background-color: #ececec;
+        padding: 10px;
+        height: 40%;
+    }
+
+    div.tchat.parent
+    {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: 99%;
+        min-width: initial;
+        z-index : 500;
+        overflow : auto;
+    }
+
+    div.tchat.parent.reduced
+    {
+        bottom: calc(-100% + 3.5em);
+        transform:initial;
+    }
+
+    div.tchat .header
+    {
+        margin-bottom: 0;
+    }
+
+    div.msg textarea
+    {
+
+    }
+
+    .tchat button.send
+    {
+        width: 100%;
+        font-size: 1.5em;
+        padding : 0.9em;
+    }
+
+    p.tchatTool
+    {
+
+    }
+
+    div.message p
+    {
+        line-height: 1em;
+    }
+}

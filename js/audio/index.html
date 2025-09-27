@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Le Titre de la Page</title>
+    <link rel='stylesheet' href='../../css/audio.css'>
+</head>
+<body style="margin : 0;">
+    <button onclick='SM.play("01_intro");'>PLay</button>
+    <button onclick='SM.pause("01_intro");'>Pause</button>
+    <script src="../paths.js"></script>   
+    <script src="../utils.js"></script>   
+    <script src="../HttpRequest.js"></script>   
+    <script src="../math/Complex.js"></script>   
+    <script src="SoundRealTimeVisualizer.js"></script>   
+    <script src="SoundManager.js"></script>   
+    <script>
+        SM = new SoundManager();
+        s = SM.newSound("../../../spacewarp/game/sounds/01_intro.mp3");
+const v = SM.visualizer(s, (viz) => viz.animate());
+v.interface(B, 512);
+    </script>
+</body>
+</html>
