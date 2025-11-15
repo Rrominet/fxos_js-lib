@@ -5,6 +5,17 @@ HTMLElement.prototype.createLoader = function ()
         loader.newNode("div");
     return loader;
 }
+
+HTMLElement.prototype.createSpinner = function ()
+{
+    const nhtml = this.innerHTML;
+    this.innerHTML = "";
+    const span = this.newNode("span");
+    span.innerHTML = nhtml;
+    const spinner = this.newNode("div", "spinner");
+    return spinner;
+}
+
 HTMLElement.prototype.newLoader = HTMLElement.prototype.createLoader;
 
 
@@ -27,3 +38,13 @@ HTMLElement.prototype.stopLoading = function()
     if (this.disabled)
         this.disabled = false;
 }
+
+HTMLElement.prototype.mkSpinning = function(disable=true)
+{
+    this.oldHTML = this.innerHTML;
+    this.createSpinner();
+    if (disable)
+        this.disabled = true;
+}
+
+HTMLElement.prototype.stopSpinning = HTMLElement.prototype.stopLoading;

@@ -178,7 +178,7 @@ Array.prototype.swap = function (elmt1, elmt2)
     this.swapByIdxs(index1, index2);
 }
 
-String.prototype.clean = function(dash=true)
+String.prototype.clean = function(dash=true, spacechar="")
 {
     let s = this.toString();
     s = s.toLowerCase();
@@ -198,9 +198,9 @@ String.prototype.clean = function(dash=true)
     s = s.replace(/ï/g, "i");
     s = s.replace(/ô/g, "o");
     s = s.replace(/ö/g, "o");
-    s = s.replace(/ /g, "");
-    s = s.replace(/,/g, "");
-    s = s.replace(/;/g, "");
+    s = s.replace(/ /g, spacechar);
+    s = s.replace(/,/g, spacechar);
+    s = s.replace(/;/g, spacechar);
     s = s.replace(/'/g, "-");
     if (dash)
     {
@@ -211,6 +211,14 @@ String.prototype.clean = function(dash=true)
 
     return s;
 };
+
+String.prototype.splitMultiple = function (separators)
+{
+    if (!Array.isArray(separators))
+        separators = [separators];
+    const regex = new RegExp(separators.join("|"), "g")
+    return this.split(regex);
+}
 
 Array.prototype.random = function ()
 {
@@ -1868,6 +1876,20 @@ function getActiveElementId()
     return document.activeElement.id;
 }
 
+function activeElmtAnInput()
+{
+    const active = document.activeElement;
+    if (!active)
+        return false;
+    if (active.tagName == "INPUT" || active.tagName == "TEXTAREA")
+        return true;
+    if (active.tagName == "SELECT")
+        return true;
+    if (active.contentEditable == "true")
+        return true;
+    return false;
+}
+
 HTMLTextAreaElement.prototype.addSelectionText = function(pChar)
 {
     let tmp = pChar.split ("<"); 
@@ -3415,10 +3437,16 @@ HTMLElement.prototype.transformed = function(tag)
 
     // Move all children from the old element to the new element
     while (this.firstChild) {
-        newElement.appendChild(oldElement.firstChild);
+        newElement.appendChild(this.firstChild);
     }
 
     return newElement;
+}
+
+HTMLElement.prototype.transform = function(tag)
+{
+    const nel = this.transformed(tag);
+    this.parentNode.replaceChild(nel, this);
 }
 
 // source2 is prioritary incase of conflict in keys !
