@@ -46,32 +46,32 @@ class UIList
     {
         for (const el of this.elmts) 
         {
-            el.div.addEventListener(type, () => func(el));
+            el._uiElmt.addEventListener(type, () => func(el));
         }
     }
 
-	// Elmt must have an attribute "div" who inherite of HTMLElement.
-	add(Elmt)
+	// Elmt must have an attribute nodename (default is div) who inherite of HTMLElement.
+	add(Elmt, nodename="div")
 	{
         if (typeof(Elmt) != "object")
         {
             const tmp = Elmt;
             Elmt = {};
-            Elmt.div = D.createElement("div");
-            Elmt.div.innerHTML = tmp;
+            Elmt[nodename] = D.createElement("div");
+            Elmt[nodename].innerHTML = tmp;
         }
 
 		this.elmts.push(Elmt);
-        if (Elmt.div)
+        if (Elmt[nodename])
         {
-            Elmt.div.classList.add("elmt"); 
-            this.list.append(Elmt.div); 
+            Elmt[nodename].classList.add("elmt"); 
+            this.list.append(Elmt[nodename]); 
         }
 		let type = this.type;
 		let elmts = this.elmts;
         if (this.type != NO_SELECTION)
         {
-            Elmt.div.addEventListener("click", function () {UIList.toggle(Elmt, type, elmts)});
+            Elmt[nodename].addEventListener("click", function () {UIList.toggle(Elmt, type, elmts)});
             Elmt.selected = function ()
             {
                 return (this.div.classList.contains("selected") && this.div.isVisible());
@@ -82,8 +82,8 @@ class UIList
         {
             Elmt.hide = () => 
             {
-                Elmt.div.hide();
-                Elmt.div.classList.remove("selected");
+                Elmt[nodename].hide();
+                Elmt[nodename].classList.remove("selected");
             }
         }
 
@@ -91,15 +91,17 @@ class UIList
         {
             Elmt.show = () => 
             {
-                if (Elmt.preShow)
+                if ("preShow" in Elmt)
                     Elmt.preShow();
-                Elmt.div.show();
-                if (!Elmt.div.classList.contains("elmt"))
-                    Elmt.div.classList.add("elmt");
-                if (!this.list.children.includes(Elmt.div))
-                    this.list.append(Elmt.div);
+                Elmt[nodename].show();
+                if (!Elmt[nodename].classList.contains("elmt"))
+                    Elmt[nodename].classList.add("elmt");
+                if (!this.list.children.includes(Elmt[nodename]))
+                    this.list.append(Elmt[nodename]);
             }
         }
+
+        Elmt._uiElmt = Elmt[nodename];
 
         if (this.div)
             this.div.head.search.placeholder = "Rechercher parmis les " + this.elmts.length + " éléments...";
@@ -115,10 +117,10 @@ class UIList
     addText(txt)
     {
         const elmt = {};
-        elmt.div = D.createElement("div");
-        elmt.div.innerHTML = txt;
+        elmt._uiElmt = D.createElement("div");
+        elmt._uiElmt.innerHTML = txt;
         this.add(elmt);
-        return elmt.div;
+        return elmt._uiElmt;
     }
 
     setTitle(val)
@@ -130,7 +132,7 @@ class UIList
 
 	remove(Elmt)
 	{
-		Elmt.div.remove();
+		Elmt._uiElmt.remove();
 		this.elmts.remove(Elmt);
 	}
 
@@ -139,7 +141,7 @@ class UIList
         let s = []
         for (const el of this.elmts)
         {
-            if (el.div.classList.contains("selected") && el.div.isVisible())
+            if (el._uiElmt.classList.contains("selected") && el._uiElmt.isVisible())
                 s.push(el);
         }
 
@@ -157,21 +159,21 @@ class UIList
         this.deselectAll();
         for (const el of this.elmts)
         {
-            if (el.div.isVisible())
-                el.div.classList.add("selected");
+            if (el._uiElmt.isVisible())
+                el._uiElmt.classList.add("selected");
         }
     }
 
     deselectAll()
     {
         for (const el of this.elmts)
-            el.div.classList.remove("selected");
+            el._uiElmt.classList.remove("selected");
     }
 
 	clear()
 	{
 		for (let e of this.elmts)
-			e.div.remove();
+			e._uiElmt.remove();
 		this.elmts = [];
 	}
 
@@ -190,8 +192,8 @@ class UIList
             for (const elmt of this.elmts)
             {
                 let txt = "";
-                if (elmt.div)
-                    txt = elmt.div.innerText.clean();
+                if (elmt._uiElmt)
+                    txt = elmt._uiElmt.innerText.clean();
                 else 
                     txt = elmt.data().clean();
                 if (txt.includes(this.div.head.search.value.clean()))
@@ -210,15 +212,15 @@ class UIList
 		{
 			for (let el of elmts)
 			{
-				if (el.div.classList.contains("selected") && el != elmt)
-					el.div.classList.remove("selected");
+				if (el._uiElmt.classList.contains("selected") && el != elmt)
+					el._uiElmt.classList.remove("selected");
 			}
 		}
 
-		if (elmt.div.classList.contains("selected"))
-			elmt.div.classList.remove("selected");
+		if (elmt._uiElmt.classList.contains("selected"))
+			elmt._uiElmt.classList.remove("selected");
 		else 
-			elmt.div.classList.add("selected");
+			elmt._uiElmt.classList.add("selected");
 
         if (elmt.onSelectionChanged)
             elmt.onSelectionChanged();
@@ -271,7 +273,7 @@ class UIList
                         if (el.remove)
                             el.remove();
                         else 
-                            el.div.remove();
+                            el._uiElmt.remove();
                     }
                 }
 
