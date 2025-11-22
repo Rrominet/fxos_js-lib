@@ -7,9 +7,14 @@
     //
 class WebApp
 {
-    static load(onDoned)
+    static scriptsToLoad()
     {
-        scripts.import([FM + "/js/web-app/Menu.js", FM + "/js/Events.js", FM + "/js/web-app/Dialog.js", FM + "/js/web-app/Page.js", FM + "/js/HttpRequest.js"], onDoned);
+            return [FM + "/js/web-app/Menu.js", FM + "/js/Events.js", FM + "/js/web-app/Dialog.js", FM + "/js/web-app/Page.js", FM + "/js/HttpRequest.js"];
+    }
+
+    static async load(onDoned)
+    {
+        await scripts.import(WebApp.scriptsToLoad(), onDoned);
     }
 
     constructor()

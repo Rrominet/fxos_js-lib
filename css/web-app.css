@@ -57,6 +57,12 @@ body *
     width: 100%;
 }
 
+body script,
+body style
+{
+    display: none !important;
+}
+
 menu
 {
     width: calc(100% - 2em);

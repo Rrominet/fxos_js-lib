@@ -2,7 +2,10 @@ class bundle
 {
     static get url()
     {
-        return "http://localhost:1111";
+        if (location.href.includes("localhost"))
+            return "http://localhost:1111";
+        else 
+            return "https://files.motion-live.com";
     }
 
     //type could be js or css
@@ -30,14 +33,14 @@ class bundle
                 if (type == "js")
                 {
                     const sc = document.createElement("script");
-                    document.body.appendChild(sc);
                     sc.innerHTML = content;
+                    document.body.appendChild(sc);
                 }
                 else if (type == "css")
                 {
                     const css = document.createElement("style");
-                    document.head.appendChild(css);
                     css.innerHTML = content;
+                    document.head.appendChild(css);
                 }
                 if (cb)
                     cb();
