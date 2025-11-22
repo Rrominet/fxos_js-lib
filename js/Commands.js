@@ -31,7 +31,7 @@ class Command
     }
 
     //you can override args here or just set them before with cmd.args = ...
-    exec(args=null)
+    exec(args=null, pushHistory=true)
     {
         if (args)
             this.args = args;
@@ -49,7 +49,9 @@ class Command
         const urlData = {"cmd-id" : this.id};
         for (const key in this.args)
             urlData[key] = this.args[key];
-        history.pushState(data, this.name, "?" + new URLSearchParams(urlData).toString());
+
+        if (pushHistory)
+            history.pushState(data, this.name, "?" + new URLSearchParams(urlData).toString());
     }
 }
 
@@ -76,9 +78,9 @@ class Commands
         }
 
         if ("args" in state)
-            cmd.exec(state.args);
+            cmd.exec(state.args, false);
         else 
-            cmd.exec();
+            cmd.exec({}, false);
     }
 
     //checkfunc take one arg the cmd itself
