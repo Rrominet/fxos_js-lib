@@ -1,5 +1,5 @@
-window._current_cache_version = "current-version";
-window._cached_cache_version = "cached-version";
+window._current_cache_version = -1;
+window._cached_cache_version = -10;
 window._use_cache = false;
 window._cache_preget_called = false;
 
@@ -27,7 +27,7 @@ class cache
     }
     //return a unique key for its data
     //usesd to retreice an url from the cache with the data sended to the server
-    static async hased(data)
+    static async hashed(data)
     {
         if (typeof data == "string")
             data = JSON.parse(data);
@@ -53,7 +53,7 @@ class cache
             return;
         try
         {
-            window._current_cache_version = B.querySelector("#version").innerText;
+            window._current_cache_version = parseInt(document.body.querySelector("#version").innerText);
         }
         catch(e)
         {
@@ -107,23 +107,27 @@ class cache
 
     static async getFromCache(url, data={})
     {
-        const hased = await cache.hased(data);
-        return await db.get(url + "__" + hased, "cache");
+        const hashed = await cache.hashed(data);
+        return await db.get(url + "__" + hashed, "cache");
     }
 
     static async getFromNetwork(url, data={}, method="POST")
     {
-        return new Promise((resolve) => {
-            const xhr = HttpRequest(); 
-            xhr.sendJsonAsPost(url, data, (xhr) => 
-                {
-                    cache.hased(data).then(hased => {
-                        db.add(url + "__" + hased, xhr.response, "cache");
-                    });
-
-                    resolve(xhr.response);
-                });
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
+        
+        const result = await response.text();
+        cache.hashed(data).
+            then(hashed => {
+                db.add(url + "__" + hashed, result, "cache");
+            });
+        
+        return result;
     }
 
     static clear()
