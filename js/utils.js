@@ -3266,12 +3266,10 @@ function testlog(data)
 }
 
 //execute f when condition is true... 
-//thie condition need to be a function
+//this condition need to be a function
 //if not it wait util it's true to execute it'
 function doWhenItsTrue(condition, f)
 {
-    testlog("type of condition : ");
-    testlog(typeof(condition));
     if (typeof(condition) == "function")
     {
         if (condition())

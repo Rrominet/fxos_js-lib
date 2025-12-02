@@ -51,8 +51,14 @@ class cache
 
         if (!navigator.onLine)
             return;
+
+        //comment this line if you want to test the cache in local
+        if (location.href.includes("localhost"))
+            return;
+
         try
         {
+            //FIXME : should also be able to manage the version with the syntac x.y.z
             window._current_cache_version = parseInt(document.body.querySelector("#version").innerText);
         }
         catch(e)
