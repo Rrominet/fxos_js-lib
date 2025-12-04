@@ -38,7 +38,7 @@ class bundle
             }
             else
             {
-                console.error("bundle server error : " + res.message);
+                console.error("bundle server error : " + content.message);
                 return;
             }
         }
