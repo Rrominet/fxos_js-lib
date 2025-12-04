@@ -2041,77 +2041,93 @@ function filterScripts(scripts)
     return scripts;
 }
 
-window._imported_scripts = [];
-window._last_script_index = 0;
-//func parameter take a function to be executed after all scriptes are loaded.
+window._imported_scripts = window._imported_scripts || new Map();
+// will download all the scripts in parallell but will parse them and execute them sequencially keeping the dependencies in the right order.
+// if func exists, it will be executed ones everything is downloaded and parsed.
+// prefer using the scripts.import(...) version that is compatible with async and await.
 function importScripts(scripts, func=null, forceLoaded=false)
 {
     scripts = filterScripts(scripts);
-    for (let i=0; i<scripts.length; i++)
+    const scriptsToLoad = [];
+    
+    for (let script of scripts)
     {
-        let contains = false;
-        for (let j=0; j<window._imported_scripts.length; j++)
+        const scriptName = script.src.split("/").pop();
+        
+        // Skip if already loaded
+        if (window._imported_scripts.has(scriptName) && 
+            window._imported_scripts.get(scriptName).executed)
         {
-            if (window._imported_scripts[j].script.src.split("/").last() == scripts[i].src.split("/").last())
+            continue;
+        }
+        
+        // Skip if already in process
+        if (window._imported_scripts.has(scriptName))
+        {
+            scriptsToLoad.push(window._imported_scripts.get(scriptName));
+            continue;
+        }
+        
+        // Fetch the script content (parallel download)
+        const scriptObj = {
+            script: script,
+            downloaded: false,
+            executed: false,
+            content: null,
+            fetchPromise: fetch(script.src)
+                .then(response => response.text())
+                .then(content => {
+                    scriptObj.content = content;
+                    scriptObj.downloaded = true;
+                    return content;
+                })
+                .catch(err => {
+                    if (forceLoaded) {
+                        scriptObj.downloaded = true;
+                        scriptObj.content = '';
+                    }
+                    throw err;
+                })
+        };
+        
+        window._imported_scripts.set(scriptName, scriptObj);
+        scriptsToLoad.push(scriptObj);
+    }
+    
+
+    let allJs = "";
+    // Wait for ALL downloads to complete (parallel)
+    Promise.all(scriptsToLoad.map(s => s.fetchPromise))
+        .then(() => {
+            // Execute sequentially
+            for (let scriptObj of scriptsToLoad)
             {
-                contains = true;
-                break;
-            }
-        }
-
-        if (!contains)
-        {
-            const o = {script : scripts[i], loaded : false, ev : false};
-            window._imported_scripts.push(o);
-            scripts[i].addEventListener("load", () => o.loaded = true);
-            if (forceLoaded)
-                scripts[i].addEventListener("error", () => o.loaded = true);
-        }
-    }
-
-    for (let i=window._last_script_index; i<window._imported_scripts.length; i++)
-    {
-        if (!window._imported_scripts[i].ev && i!=window._imported_scripts.length -1)
-        {
-            window._imported_scripts[i].script.addEventListener("load", () => importScript(window._imported_scripts[i+1].script));
-            window._imported_scripts[i].script.addEventListener("error", () => importScript(window._imported_scripts[i+1].script));
-            window._imported_scripts[i].ev = true;
-        }
-    }
-
-
-    while (
-        ( window._last_script_index < window._imported_scripts.length ) && 
-        ( !importScript(window._imported_scripts[window._last_script_index].script) )
-    )
-    {
-        window._last_script_index ++;
-        console.log( window._last_script_index);
-    }
-
-    window._last_script_index = window._imported_scripts.length;
-
-    if (func)
-    {
-        const handler = () =>
-        {
-            for (const o of window._imported_scripts)
-            {
-                if (!o.loaded)    
+                if (!scriptObj.executed && scriptObj.content !== null)
                 {
-                    setTimeout(() => handler(), 16);
-                    return;
+                    allJs += scriptObj.content + "\n";
+                    scriptObj.executed = true;
                 }
             }
-            func();
-        }
-        setTimeout(() => handler(), 16);
-    }
+
+            // Add the scripts to the body
+            const script = D.createElement("script");
+            script.innerHTML = allJs;
+            B.appendChild(script);
+            
+            if (func)
+                func();
+        })
+        .catch(err => {
+            console.error("Script loading failed:", err);
+            if (forceLoaded && func)
+                func();
+        });
 }
 
 class scripts
 {
     //ls is a string list of scripts paths
+    //importScripts allias returning a Promise and so with async await compatibili
     static import(ls, cb=null)
     {
         if (typeof(ls) != "object")
