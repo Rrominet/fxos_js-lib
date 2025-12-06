@@ -3490,3 +3490,10 @@ JSON.merged = function(source1, source2){
 
     return mergedJSON;
 }
+
+HTMLVideoElement.prototype.fps = function ()
+{
+    const fps = this.getVideoPlaybackQuality().totalVideoFrames /
+                (this.currentTime || 1);
+    return fps;
+}
