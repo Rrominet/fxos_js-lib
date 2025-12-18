@@ -172,9 +172,9 @@ class Commands
 
 //TODO : could do a lot here.
 //automaticly add a help popup, keybinds, loader in the button, etc...
-HTMLElement.prototype.addCommand = function(cmd, overrideText="")
+HTMLElement.prototype.addCommand = function(cmd, overrideText="", cls="", id="")
 {
     if (overrideText == "")
         overrideText = cmd.name;
-    return this.newButton(overrideText, () => cmd.exec());
+    return this.newButton(overrideText, () => cmd.exec(), cls, id);
 }
