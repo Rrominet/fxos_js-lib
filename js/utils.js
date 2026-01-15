@@ -2027,11 +2027,13 @@ function filterScripts(scripts)
 {
     const bscripts = D.querySelectorAll("script");
     let toRemove = [];
-    for (const s of scripts)
+    for (let s of scripts)
     {
+        if (typeof(s) == "object")
+            s = s.src;
         for (const bs of bscripts)
         {
-            if (bs.src == s.src)
+            if (bs.src == s)
                 toRemove.push(s);
         }
     }
@@ -2052,7 +2054,9 @@ function importScripts(scripts, func=null, forceLoaded=false)
     
     for (let script of scripts)
     {
-        const scriptName = script.src.split("/").pop();
+        if (typeof(script) == "object")
+            script = script.src;
+        const scriptName = script.split("/").pop();
         
         // Skip if already loaded
         if (window._imported_scripts.has(scriptName) && 
@@ -2074,7 +2078,7 @@ function importScripts(scripts, func=null, forceLoaded=false)
             downloaded: false,
             executed: false,
             content: null,
-            fetchPromise: fetch(script.src)
+            fetchPromise: fetch(script)
                 .then(response => response.text())
                 .then(content => {
                     scriptObj.content = content;
@@ -2134,9 +2138,6 @@ class scripts
             ls = [ls];
         return new Promise((resolve) => 
             {
-                let scriptsLs = [];
-                for (const path of ls)
-                    scriptsLs.push(mkJs(path));
                 let _resolve = resolve;
                 if (cb)
                 {
@@ -2146,7 +2147,7 @@ class scripts
                         resolve();
                     };
                 }
-                importScripts(scriptsLs, _resolve);
+                importScripts(ls, _resolve);
             }) 
     }
 }
