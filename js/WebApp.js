@@ -30,16 +30,21 @@ class WebApp
         this.setBasicsKeybind();
     }
 
-    static create(Class)
+    static create(Class, connect=true)
     {
-        const onConnected  = () =>
+        if (!connect)
+            return new Class;
+        else 
         {
-            new Class;
-        }
+            const onConnected  = () =>
+            {
+                new Class;
+            }
 
-        window.auth = new Auth;
-        window.auth.connect(localStorage["code"] || "");
-        window.auth.events.add("connected", onConnected);
+            window.auth = new Auth;
+            window.auth.connect(localStorage["code"] || "");
+            window.auth.events.add("connected", onConnected);
+        }
     }
 
     createPage(ClassName, addToMenu=true)
