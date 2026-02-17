@@ -3498,3 +3498,20 @@ HTMLVideoElement.prototype.fps = function ()
                 (this.currentTime || 1);
     return fps;
 }
+
+function randomUTF8Char()
+{
+    // Common printable ranges
+    const ranges = [
+        [0x0020, 0x007E],  // Basic Latin
+        [0x00A0, 0x00FF],  // Latin-1 Supplement
+        [0x0100, 0x017F],  // Latin Extended-A
+        [0x0370, 0x03FF],  // Greek
+        [0x0400, 0x04FF],  // Cyrillic
+        [0x4E00, 0x9FFF],  // CJK Unified Ideographs
+    ];
+    
+    const range = ranges[Math.floor(Math.random() * ranges.length)];
+    const codePoint = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+    return String.fromCodePoint(codePoint);
+}
