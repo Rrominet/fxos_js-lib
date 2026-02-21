@@ -140,12 +140,25 @@ class Glitch
         this.addFilterRandomly();
         this.start();
     }
+
+    glitching()
+    {
+        return this.startTime.getTime() + this.time >= new Date().getTime();
+    }
 }
 
 HTMLElement.prototype.glitch = function(time=1000, freq=16, duplicate=3, offsetx=0, offsety=0)
 {
-    this.glitch = new Glitch(this, time, freq);
-    this.glitch.duplicate(duplicate);
-    this.glitch.setPositionOffset(offsetx, offsety);
-    this.glitch.glitch();
+    this._glitch = new Glitch(this, time, freq);
+    this._glitch.duplicate(duplicate);
+    this._glitch.setPositionOffset(offsetx, offsety);
+    this._glitch.glitch();
+}
+
+HTMLElement.prototype.glitching = function()
+{
+    if ("_glitch" in this)
+        return this._glitch.glitching();
+    else 
+        return false;
 }
