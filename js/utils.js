@@ -3515,3 +3515,10 @@ function randomUTF8Char()
     const codePoint = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
     return String.fromCodePoint(codePoint);
 }
+
+HTMLElement.prototype.duplicate = function()
+{
+    const r = this.cloneNode(true);
+    this.parentNode.appendChild(r);
+    return r;
+}
