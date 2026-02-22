@@ -98,7 +98,7 @@ class SoundManager
     }
 
     // needed to create seamless loop
-    newSeamlessLoop(path, volume=1.0)
+    newSeamlessLoop(path, volume=1.0, onloaded=null)
     {
         const xhr = HttpRequest();
         xhr.responseType = "arraybuffer";
@@ -120,8 +120,11 @@ class SoundManager
                         }
                         name += "_" + i;
                     }
-                    let audio = this._newAudioBuffer(buf, name, volume); 
-                    audio.play();
+                    const audio = this._newAudioBuffer(buf, name, volume); 
+                    if (onloaded)
+                        onloaded(audio);
+                    else 
+                        audio.play();
                 })
         };
         xhr.send();
@@ -140,16 +143,32 @@ class SoundManager
         audio.paused = true;
         audio.started = false;
 
-        audio.play = () => {
+        audio.play = () => 
+        {
+            console.log("Audio::Play()");
             if (!audio.paused)
-                return;
+            {
+                console.log("Already playing");
+                return audio;
+            }
             if (audio.started)
+            {
+                console.log("Already started, creating a new buffer and playing it.");
                 audio = this._newAudioBuffer(audio.buffer, name);
+                audio.play();
+                return audio;
+            }
             audio.start(0); 
             audio.paused = false;
             audio.started = true;
+            return audio;
         }
-        audio.pause = function(){this.stop(); this.paused = false;}
+        audio.pause = function(){
+            console.log("Audio::Pause()");
+            this.stop();
+            this.paused = true;
+            console.log("Audio Paused.");
+        }
 
         this.sounds[name] = audio;
         return audio;
@@ -157,7 +176,7 @@ class SoundManager
 
     // name cound be the path, in that case it will create the sound if it does not exists
     // if force, it will create the sound even if it already exists (only if the first sound is already playing), useful for playing 2 time the same sound in the same time
-    // params is an object that can contain loop, voulume and Audio api params
+    // params is an object that can contain loop, volume, fromstart and Audio api params
     playSound(name, force=false, params = {})
     {
         let s = null;
@@ -220,6 +239,9 @@ class SoundManager
 
         if (params.volume)
             sound.volume = params.volume;
+
+        if ("fromstart" in params && params.fromstart)
+            sound.currentTime = 0;
     }
 
 

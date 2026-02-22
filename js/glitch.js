@@ -8,6 +8,7 @@ class Glitch
         this.freq = freq;
         this.startTime = null;
         this.timeoutf = null;
+        this._onend = [];
 
         this.transform = {
             offsetx : 0,
@@ -27,6 +28,21 @@ class Glitch
     {
         this.transform.offsetx = x;
         this.transform.offsety = y;
+    }
+
+    addOnEnd(cb)
+    {
+        this._onend.push(cb);
+    }
+
+    syncSound(SoundManager, path, params={})
+    {
+        const s = SoundManager.play(path, true, params);
+        const onend = () => {
+            s.pause();
+        };
+
+        this.addOnEnd(onend);
     }
 
     addMoveRandomly(min=0, max=100)
@@ -116,7 +132,11 @@ class Glitch
             if (this.startTime.getTime() + this.time >= new Date().getTime())
                 setTimeout(() => this.timeoutf(), randomInt(8, this.freq));
             else 
+            {
+                for (const f of this._onend)
+                    f();
                 this.reset();
+            }
         };
 
         setTimeout(() => this.timeoutf(), randomInt(8, this.freq));
@@ -153,6 +173,13 @@ HTMLElement.prototype.glitch = function(time=1000, freq=16, duplicate=3, offsetx
     this._glitch.duplicate(duplicate);
     this._glitch.setPositionOffset(offsetx, offsety);
     this._glitch.glitch();
+}
+HTMLElement.prototype.getGlitch = function()
+{
+    if ("_glitch" in this)
+        return this._glitch;
+    else 
+        return null;
 }
 
 HTMLElement.prototype.glitching = function()
