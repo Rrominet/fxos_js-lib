@@ -12,9 +12,9 @@ class highlight
         window.highlight_imported = true;
     }
 
-    static async color()
+    static async color(importIfNot=true)
     {
-        if (!window.highlight_imported)
+        if (!window.highlight_imported && importIfNot)
             await highlight.import();
         hljs.highlightAll();
     }
