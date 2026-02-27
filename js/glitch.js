@@ -119,6 +119,9 @@ class Glitch
         for(let i=0; i<nb; i++)
         {
             const d = this.node.duplicate();
+            d.style.position = "fixed";
+            d.style.left = this.node.x() + "px";
+            d.style.top = this.node.y() + "px";
             this.duplicates.push(d);
         }
     }
