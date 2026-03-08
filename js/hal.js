@@ -123,10 +123,7 @@ class Hal
 
     static start()
     {
-        scripts.import([
-            FM + "/js/urlParameters.js",
-            FM + "/js/HttpRequest.js",
-        ], Hal.init);
+        Hal.init();
     }
 }
 

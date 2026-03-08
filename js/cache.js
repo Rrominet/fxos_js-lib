@@ -91,7 +91,7 @@ class cache
         }
     }
 
-    static async get(url, data={}, method="POST")
+    static async get(url, data={}, method="GET")
     {
         await cache.preget();
         if (window._use_cache)
@@ -117,15 +117,34 @@ class cache
         return await db.get(url + "__" + hashed, "cache");
     }
 
-    static async getFromNetwork(url, data={}, method="POST")
+    static async getFromNetwork(url, data={}, method="GET")
     {
-        const response = await fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        let response = null;
+        if (method == "GET")
+        {
+            if (Object.keys(data).length > 0)
+                method = "POST";
+
+            if (method == "GET")
+            {
+                response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+            }
+        }
+        if (method == "POST")
+        {
+             response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        }
         
         const result = await response.text();
         cache.hashed(data).

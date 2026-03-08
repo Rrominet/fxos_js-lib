@@ -13,39 +13,13 @@ class bundle
     {
         if (typeof(files) == "string")
             files = [files];
-        const data = {"files" : files, "location" : location};
-        try
+
+        if (type == "js")
+            scripts.import(files, cb)
+        else 
         {
-            let content = await cache.get(bundle.url + "/get", data)
-            content = JSON.parse(content);
-            if (content.success)
-            {
-                if (type == "js")
-                {
-                    const sc = document.createElement("script");
-                    sc.innerHTML = content.data.bundle;
-                    document.body.appendChild(sc);
-                }
-                else if (type == "css")
-                {
-                    const css = document.createElement("style");
-                    css.innerHTML = content.data.bundle;
-                    document.head.appendChild(css);
-                }
-                if (cb)
-                    cb();
-                return;
-            }
-            else
-            {
-                console.error("bundle server error : " + content.message);
-                return;
-            }
-        }
-        catch(e)
-        {
-                console.error("bundle request error : " + e);
-                return;
+            for (const f of files)
+                newCss(f);
         }
     }
 

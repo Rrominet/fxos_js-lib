@@ -2113,6 +2113,13 @@ function importScripts(scripts, func=null, forceLoaded=false)
                 }
             }
 
+            if (allJs == "")
+            {
+                if (func)
+                    func();
+                return;
+            }
+
             // Add the scripts to the body
             const script = D.createElement("script");
             script.innerHTML = allJs;
@@ -2283,17 +2290,13 @@ function ip(callback)
             callback(window.IP);
         return window.IP;
     }
-    importScripts([
-    mkJs(FM + "/js/HttpRequest.js")], () => 
-        {
-            const xhr = HttpRequest();
-            const url = FM + "/php/ip.php?func=getIp";
-            xhr.sendAsPost(url, null, (xhr) => {
-                window.IP = xhr.response;
-                if (callback)
-                    callback(xhr.response);
-            });
-        })
+    const xhr = HttpRequest();
+    const url = FM + "/php/ip.php?func=getIp";
+    xhr.sendAsPost(url, null, (xhr) => {
+        window.IP = xhr.response;
+        if (callback)
+            callback(xhr.response);
+    });
     return "waiting";
 }
 
