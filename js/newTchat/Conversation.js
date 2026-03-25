@@ -10,10 +10,10 @@ class Conversation
         this.sender = Tchat.me();
         this.sending = false;
         this.loadingMessages = false;
-        this.load();
         this.first = true;
         this.loadingTxtWriter = false;
         this.messages = [];
+        setTimeout(() => this.load(), 16);
     }
 
     setSenderName(name)

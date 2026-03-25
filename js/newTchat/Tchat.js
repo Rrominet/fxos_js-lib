@@ -10,8 +10,8 @@ class Tchat
     static get JS_DIR(){return Tchat.FM + "/js/newTchat";}
     static get ajax()
     {
-        if (location.href.includes("https://dev-") || location.href.includes("http://dev-"))
-            return "https://dev-tchat.motion-live.com";
+        if (location.href.includes("localhost"))
+            return "http://localhost:8899";
         else 
             return "https://tchat.motion-live.com";
     }
@@ -38,6 +38,7 @@ class Tchat
         this.readonly = false;
         this.setBasicEvents();
         scripts.import([
+            Tchat.FM + "/js/HttpRequest.js", 
             Tchat.FM + "/js/icons.js", 
             Tchat.JS_DIR + "/Conversation.js", 
             Tchat.JS_DIR + "/TchatButton.js", 
@@ -130,122 +131,114 @@ class Tchat
     // for other use get or send
     request(cmd, json, onDoned=null, onProgress=null, onUpload=null)
     {
-        importScripts([mkJs(Tchat.FM + "/js/HttpRequest.js")], () =>
-            {
-                json["root"] = this.dir;
-                json["id"] = this.conv.id;
-                const xhr = HttpRequest();
+        json["root"] = this.dir;
+        json["id"] = this.conv.id;
+        const xhr = HttpRequest();
 
-                if (onProgress)
-                {
-                    xhr.addEventListener('loadstart', onProgress);
-                    xhr.addEventListener('load', onProgress);
-                    xhr.addEventListener('progress', onProgress);
-                    xhr.addEventListener('error', onProgress);
-                    xhr.addEventListener('abort', onProgress);
-                    xhr.addEventListener('timeout', onProgress);
-                }
-                
-                if (onUpload)
-                {
-                    xhr.upload.addEventListener('loadstart', onUpload);
-                    xhr.upload.addEventListener('load', onUpload);
-                    xhr.upload.addEventListener('progress', onUpload);
-                    xhr.upload.addEventListener('error', onUpload);
-                    xhr.upload.addEventListener('abort', onUpload);
-                    xhr.upload.addEventListener('timeout', onUpload);
-                }
+        if (onProgress)
+        {
+            xhr.addEventListener('loadstart', onProgress);
+            xhr.addEventListener('load', onProgress);
+            xhr.addEventListener('progress', onProgress);
+            xhr.addEventListener('error', onProgress);
+            xhr.addEventListener('abort', onProgress);
+            xhr.addEventListener('timeout', onProgress);
+        }
 
-                if (onDoned)
+        if (onUpload)
+        {
+            xhr.upload.addEventListener('loadstart', onUpload);
+            xhr.upload.addEventListener('load', onUpload);
+            xhr.upload.addEventListener('progress', onUpload);
+            xhr.upload.addEventListener('error', onUpload);
+            xhr.upload.addEventListener('abort', onUpload);
+            xhr.upload.addEventListener('timeout', onUpload);
+        }
+
+        if (onDoned)
+        {
+            xhr.sendJsonAsPost(Tchat.ajax + "/" + cmd, json, (xhr) => {
+                try
                 {
-                    xhr.sendJsonAsPost(Tchat.ajax + "/" + cmd, json, (xhr) => {
-                        try
-                        {
-                            let data = JSON.parse(xhr.responseText);
-                            onDoned(data);
-                        }
-                        catch(e)
-                        {
-                            onDoned(xhr.responseText);
-                        }
-                    });
+                    let data = JSON.parse(xhr.responseText);
+                    onDoned(data);
                 }
-                else 
-                    xhr.sendJsonAsPost(Tchat.ajax + "/" + cmd, json);
+                catch(e)
+                {
+                    onDoned(xhr.responseText);
+                }
             });
+        }
+        else 
+            xhr.sendJsonAsPost(Tchat.ajax + "/" + cmd, json);
     }
 
     // the get send the request but don't queue if it can't send it
     get(cmd, json, onDoned=null)
     {
-        importScripts([mkJs(Tchat.FM + "/js/HttpRequest.js")], () =>
+        json["root"] = this.dir;
+        json["id"] = this.conv.id;
+        if (onDoned)
+        {
+            const _cb = (res) => 
             {
-                json["root"] = this.dir;
-                json["id"] = this.conv.id;
-                if (onDoned)
-                {
-                    const _cb = (res) => 
-                    {
-                        try{
-                            res = JSON.parse(res);
-                        }
-                        catch(e)
-                        {
-                            console.error("cooudn't parse as JSON the response : " + res);
-                            console.error(e);
-                            res = res;
-                        }
-                        try
-                        {
-                            onDoned(res)
-                        }
-                        catch(e)
-                        {
-                            console.error(e);
-                        }
-                    }
-                    request.send(Tchat.ajax + "/" + cmd, json, _cb);
+                try{
+                    res = JSON.parse(res);
                 }
-                else 
-                    request.send(Tchat.ajax + "/" + cmd, json);
-            });
+                catch(e)
+                {
+                    console.error("cooudn't parse as JSON the response : " + res);
+                    console.error(e);
+                    res = res;
+                }
+                try
+                {
+                    onDoned(res)
+                }
+                catch(e)
+                {
+                    console.error(e);
+                }
+            }
+            request.send(Tchat.ajax + "/" + cmd, json, _cb);
+        }
+        else 
+            request.send(Tchat.ajax + "/" + cmd, json);
+
     }
 
     // the send send the request or queue it if it can't send it for any reason
     send(cmd, json, onDoned=null, onQueued=null)
     {
-        importScripts([mkJs(Tchat.FM + "/js/HttpRequest.js")], () =>
+        json["root"] = this.dir;
+        json["id"] = this.conv.id;
+        if (onDoned)
+        {
+            const _cb = (res) => 
             {
-                json["root"] = this.dir;
-                json["id"] = this.conv.id;
-                if (onDoned)
-                {
-                    const _cb = (res) => 
-                    {
-                        try{
-                            res = JSON.parse(res);
-                        }
-                        catch(e)
-                        {
-                            console.error("cooudn't parse as JSON the response : " + res);
-                            console.error(e);
-                            res = res;
-                        }
-                        try
-                        {
-                            onDoned(res)
-                        }
-                        catch(e)
-                        {
-                            console.error("error in onDoned : ");
-                            console.error(e);
-                        }
-                    }
-                    request.sendOrQueue(Tchat.ajax + "/" + cmd, json, _cb, onQueued);
+                try{
+                    res = JSON.parse(res);
                 }
-                else 
-                    request.send(Tchat.ajax + "/" + cmd, json, null, onQueued);
-            });
+                catch(e)
+                {
+                    console.error("cooudn't parse as JSON the response : " + res);
+                    console.error(e);
+                    res = res;
+                }
+                try
+                {
+                    onDoned(res)
+                }
+                catch(e)
+                {
+                    console.error("error in onDoned : ");
+                    console.error(e);
+                }
+            }
+            request.sendOrQueue(Tchat.ajax + "/" + cmd, json, _cb, onQueued);
+        }
+        else 
+            request.send(Tchat.ajax + "/" + cmd, json, null, onQueued);
     }
 
     error(type)
@@ -300,7 +293,10 @@ class Tchat
             return;
 
         window.creating_tchats_stream = true;
-        await scripts.import(FM + "/js/streams.js");
+        await scripts.import([ 
+            FM + "/js/HttpRequest.js" ,
+            FM + "/js/streams.js" 
+        ]);
 
         const onres = (data) => 
         {

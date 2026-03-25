@@ -121,8 +121,14 @@ class Hal
         window.HAL = new Hal;
     }
 
-    static start()
+    static async start()
     {
+        let scs = [];
+        if (typeof(getUrlParameter) == "undefined")
+            scs.push(FM + "/js/urlParameters.js");
+        if (typeof(HttpRequest) == "undefined")
+            scs.push(FM + "/js/HttpRequest.js");
+        await scripts.import(scs);
         Hal.init();
     }
 }
