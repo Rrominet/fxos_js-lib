@@ -39,9 +39,11 @@ HTMLElement.prototype.stopLoading = function()
         this.disabled = false;
 }
 
-HTMLElement.prototype.mkSpinning = function(disable=true)
+HTMLElement.prototype.mkSpinning = function(disable=true, replaceContent=false)
 {
     this.oldHTML = this.innerHTML;
+    if (replaceContent)
+        this.innerHTML = "";
     this.createSpinner();
     if (disable)
         this.disabled = true;

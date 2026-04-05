@@ -716,7 +716,6 @@ Date.prototype.frenchMonth = function()
     return months[this.getMonth()];
 }
 
-
 function createVideoLecteur(videoPath, imgPath, type="formation")
 {
     let iframe = D.createElement("iframe");
