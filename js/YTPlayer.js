@@ -111,7 +111,10 @@ class YTPlayer
 
     createYoutubePlayer()
     {
-        importScripts([mkJs("https://www.youtube.com/iframe_api")], () => 
+        const sc = D.createElement("script");
+        B.appendChild(sc);
+        sc.src = "https://www.youtube.com/iframe_api";
+        sc.addEventListener("load", () => 
             {
                 if (this.loaded)
                     return;

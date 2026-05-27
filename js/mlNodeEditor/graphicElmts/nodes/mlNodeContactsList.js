@@ -162,6 +162,10 @@ class mlNodeContactsList extends mlNode
 		this.content.list.op38.value = "live-inscrits";
 		this.content.list.op38.innerText = "Inscrits à un live";
 
+		this.content.list.op39 = newNode("option", this.content.list);
+		this.content.list.op39.value = "h3d2-irl-event";
+		this.content.list.op39.innerText = "Inscrits à l'event H3D2 IRL";
+
         this.content.version = this.content.newNode("select", "content");
         this.content.version.setOptions([
            ["Toutes", "all"],
