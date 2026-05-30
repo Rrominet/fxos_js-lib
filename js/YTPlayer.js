@@ -94,6 +94,8 @@ class YTPlayer
 
     createImg()
     {
+        if (typeof(MLT) == "undefined")
+            window.MLT = "https://teach.motion-live.com";
         this.play = this.div.ytIframe.newImg(MLT + "/images/icons/youtube-logo.png");
         this.play.classList.add("logo");
         if (this.logoColor == "white")
@@ -141,6 +143,18 @@ class YTPlayer
                         this.loaded = true;
                     });
             });
+    }
+
+    pause()
+    {
+        if (this.div.yt)
+            this.div.yt.pauseVideo();
+    }
+
+    play()
+    {
+        if (this.div.yt)
+            this.div.yt.playVideo();
     }
 
     createTchat()

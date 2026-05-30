@@ -1707,7 +1707,7 @@ HTMLElement.prototype.newSelect = function (options = [], classList = [], id="")
     return _r;
 }
 
-HTMLElement.prototype.labelValue = function (label, value, unit="", classList = [], id="")
+HTMLElement.prototype.labelValue = function (label, value, unit="", classList = [], id="", formatNumberWithSpaces=true)
 {
     const r = this.newNode("div", classList, id); 
     r.classList.add("label-container");
@@ -1716,7 +1716,8 @@ HTMLElement.prototype.labelValue = function (label, value, unit="", classList = 
     else 
         r.label = r.newTitle("label", "");
     r.value = r.newTitle("label", "<b>" + value + "</b>" + unit, "value"); 
-    r.value.children[0].formatNumbersWithSpaces();
+    if (formatNumberWithSpaces)
+        r.value.children[0].formatNumbersWithSpaces();
 
     r.getText = function (){return this.label.innerHTML; }
     r.getLabel= r.getText;

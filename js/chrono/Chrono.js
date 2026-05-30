@@ -1,8 +1,9 @@
 class Chrono
 {
-	constructor(formationIndex, parent=null, email="", fromData = true) // endTime in seconds since 1970
+	constructor(formationIndex, parent=null, email="", fromData = true, language="fr") // endTime in seconds since 1970
 	{
 		this.parent = parent;
+        this.language = language;
 		this.index = formationIndex;
 		this.startDate = new Date();
 		this.endDate = null;
@@ -14,9 +15,9 @@ class Chrono
             this.sendXhrForTime();
     }
 
-    static fromEndDate(date, parent=null)
+    static fromEndDate(date, parent=null, language="fr")
     {
-        let chrono = new Chrono(null, parent, "", false); 
+        let chrono = new Chrono(null, parent, "", false, language); 
         chrono.endDate = date; 
         chrono.timeLeft = chrono.endDate - chrono.startDate;
         if (chrono.timeLeft<0)
@@ -28,10 +29,20 @@ class Chrono
 
     minify()
     {
-        this.container.daysLabel.innerText = "j";
-        this.container.houresLabel.innerText = "h";
-        this.container.minutsLabel.innerText = "m";
-        this.container.secondsLabel.innerText = "s";
+        if (this.language == "fr")
+        {
+            this.container.daysLabel.innerText = "j";
+            this.container.houresLabel.innerText = "h";
+            this.container.minutsLabel.innerText = "m";
+            this.container.secondsLabel.innerText = "s";
+        }
+        else if (this.language == "en")
+        {
+            this.container.daysLabel.innerText = "d";
+            this.container.houresLabel.innerText = "h";
+            this.container.minutsLabel.innerText = "m";
+            this.container.secondsLabel.innerText = "s";
+        }
     }
 
 	sendXhrForTime() 
@@ -76,22 +87,34 @@ class Chrono
 		this.container.days = this.container.newNode("span", ["nombre", "jours"]); 
 		this.container.days.innerText = "00";
 		this.container.daysLabel = this.container.newNode("span", "labels"); 
-		this.container.daysLabel.innerText = " jours, ";
+        if (this.language == "fr")
+            this.container.daysLabel.innerText = " jours, ";
+        else if (this.language == "en")
+            this.container.daysLabel.innerText = " days, ";
 
 		this.container.houres = this.container.newNode("span", ["nombre", "heures"]); 
 		this.container.houres.innerText = "00";
 		this.container.houresLabel = this.container.newNode("span", "labels"); 
-		this.container.houresLabel.innerText = " heures, ";
+        if(this.language == "fr")
+            this.container.houresLabel.innerText = " heures, ";
+        else if (this.language == "en")
+            this.container.houresLabel.innerText = " hours, ";
 
 		this.container.minuts = this.container.newNode("span", ["nombre", "minutes"]); 
 		this.container.minuts.innerText = "00";
 		this.container.minutsLabel = this.container.newNode("span", "labels"); 
-		this.container.minutsLabel.innerText = " minutes, ";
+        if (this.language == "fr")
+            this.container.minutsLabel.innerText = " minutes, ";
+        else if (this.language == "en")
+            this.container.minutsLabel.innerText = " minutes, ";
 
 		this.container.seconds = this.container.newNode("span", ["nombre", "secondes"]); 
 		this.container.seconds.innerText = "00";
 		this.container.secondsLabel = this.container.newNode("span", "labels"); 
-		this.container.secondsLabel.innerText = " secondes.";
+        if (this.language == "fr")
+            this.container.secondsLabel.innerText = " secondes.";
+        else if (this.language == "en")
+            this.container.secondsLabel.innerText = " seconds.";
 	}
 
 	updateInterface()
