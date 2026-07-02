@@ -1,8 +1,13 @@
 class FAQ
 {
-	constructor (div)
+	constructor (div, importCss=true)
 	{
-		this.css();
+        if (importCss)
+        {
+            if (typeof(FM) == "undefined")
+                FM = "./frameworks";
+            this.css();
+        }
 		this.div = div;
 		this.sections = [];
 		this.setSections();
@@ -56,7 +61,7 @@ class FAQSection
 
 	setEvents()
 	{
-		this.section.question.addEventListener("click", ()=>this.toggle());
+		this.section.addEventListener("click", ()=>this.toggle());
 	}
 
 	height()
