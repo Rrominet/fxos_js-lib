@@ -646,6 +646,60 @@ Date.prototype.asFrench = function(includeDay = true, includeMonth = true, inclu
     return r;
 }
 
+Date.prototype.asEnglish = function(includeDay = true, includeMonth = true, includeYear = true, includeTime=false, isDuration=false)
+{
+    let d = this.getDate(); 
+    if (isDuration)
+        d --;
+    let m = this.getMonth() + 1; 
+    if (isDuration)
+        m -= 1;
+    let y = this.getFullYear();
+    if (isDuration)
+        y -= 1970;
+
+    let r = String(m).padStart(2, '0')+ "-" + String(d).padStart(2, '0') + "-" + String(y).padStart(2, '0');
+    if (includeDay && includeMonth && includeYear)
+    {
+
+    }
+    else 
+    {
+        tmp = r.split("/"); 
+        if (!includeMonth && !includeDay && !includeYear)
+            tmp = tmp.slice(3);
+        else if (!includeMonth && !includeDay)
+            tmp = tmp.slice(2);
+        else if (!includeDay)
+            tmp.remove(tmp[1]); 
+        else if (!includeMonth)
+            tmp.remove(tmp[0]); 
+        else if (!includeYear)
+            tmp.remove(tmp[2]); 
+
+        r = tmp.join("/");
+    }
+
+    if (includeTime)
+    {
+        let h = this.getHours();
+        if (isDuration)
+            h -=1 ;
+        let m = this.getMinutes();
+        let s = this.getSeconds();
+
+        let time = String(h).padStart(2, "0") + ":" + 
+            String (m).padStart(2, "0") + ":" +
+            String (s).padStart(2, "0");
+        if (r.length>0)
+            r += " - " + time;
+        else 
+            r = time;
+    }
+
+    return r;
+}
+
 Date.prototype.asDuration = function(includesMinutes=true, includesSeconds=true)
 {
     let d = this.getDate(); 
