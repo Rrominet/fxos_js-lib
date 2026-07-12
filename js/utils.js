@@ -2221,13 +2221,32 @@ function logImportedScripts()
     console.log("----");
 }
 
-HTMLElement.prototype.newButton = function (text, func=null, classList = [], id="", prepend=false) 
+//inA put the button in an ancher
+//aOpts is the options for the ancher (href, target, classes, id)
+HTMLElement.prototype.newButton = function (text, func=null, classList = [], id="", prepend=false, inA=false, aOpts={}) 
 {
     let b = null;
+    let parent = this;
+    if (inA)
+    {
+        parent = this.newNode("a");
+        if ("href" in aOpts)
+            parent.href = aOpts.href;
+        if ("target" in aOpts)
+            parent.target = aOpts.target;
+        if ("classes" in aOpts)
+        {
+            for (const c of aOpts.classes)
+                parent.classList.add(c);
+        }
+
+        if ("id" in aOpts)
+            parent.id = aOpts.id;
+    }
     if (prepend)
-        b = this.prependNode("button", classList, id);
+        b = parent.prependNode("button", classList, id);
     else 
-        b = this.newNode("button", classList, id); 
+        b = parent.newNode("button", classList, id); 
     if (typeof(text) == "object")
     {
         if (text instanceof Array)
