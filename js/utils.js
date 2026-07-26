@@ -2491,7 +2491,6 @@ HTMLElement.prototype.onScreen = function()
 
     if (y-screenHeight<=0 && clientRects[0].bottom>0)
         return true;
-
     else 
         return false;
 }
@@ -3597,4 +3596,29 @@ HTMLElement.prototype.duplicate = function()
     const r = this.cloneNode(true);
     this.parentNode.appendChild(r);
     return r;
+}
+
+//return the most centered element on the screen height wide
+//used to simulate the "hover" effect on a phone
+HTMLElement.prototype.centered = function()
+{
+    const chs = this.children;
+    const h = innerHeight;
+
+    if (chs.length == 0)
+        return null;
+
+    let centered = chs[0];
+    let lastHDelta = 100000;
+    for (const c of chs)
+    {
+        const hdelta = Math.abs(c.y() - h/2);
+        if (hdelta < lastHDelta)
+        {
+            lastHDelta = hdelta;
+            centered = c;
+        }
+    }
+
+    return centered;
 }
