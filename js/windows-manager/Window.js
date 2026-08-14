@@ -344,11 +344,10 @@ class mlWindow
     }
 
     // val is the percentage of the screen you want to use
-    setScreenWidth(val, padding = "2em")
+    setScreenWidth(val)
     {
         this.screenWidth = val;
-        this.padding = padding;
-        const w = "calc(" + val + "% - " + padding + ")";
+        const w = val + "%";
         this.div.style.width = w;
     }
 
@@ -388,7 +387,7 @@ class mlWindow
             w = 95;
         else if (innerWidth<=1270 && this.screenWidth<70)
             w = 75;
-        this.div.style.width =  "calc(" + w + "% - " + this.padding + ")";
+        this.div.style.width = w + "%";
         if (this.needCenter && !this.draggable)
             this.center();
         return w;

@@ -10,6 +10,7 @@ body.windows-manager
 
 div.window
 {
+    box-sizing: border-box;
     padding: 1em;
     border-radius: 0.2em;
     box-shadow: 0 0 5px #00000029;
@@ -25,24 +26,24 @@ div.window
 div.window.popup
 {
     position : fixed;
-    margin-top : 5em;
-    max-height: calc(100% - 8em);
     overflow-y: auto;
-    top : 0;
-    left : 0;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
 }
 
 @keyframes popup-show
 {
     0%
     {
-        transform : scale(0.8);
+        transform : translate(-50%, -50%) scale(0.8);
         opacity : 0;
     }
 
     100%
     {
-        transform : scale(1.0);
+        transform : translate (-50%, -50%) scale(1.0);
         opacity : 1;
     }
 }
@@ -289,8 +290,8 @@ div.window button.close:hover
 div.window.center
 {
     position : fixed; 
-    width : calc(50% - 2em); 
-    margin-left : calc(25% - 0.5em);
+    width : 50%; 
+    margin-left : 25%;
     margin-top : 5em;
 }
 
@@ -414,6 +415,7 @@ div.window img.icon
     width : 15px;
 }
 
+
 @media (max-width : 1280px)
 {
     div.popup div.form
@@ -426,8 +428,8 @@ div.window img.icon
 {
     div.window.center
     {
-        width : calc(95% - 2em); 
-        margin-left : calc(2.5% - 0.5em);
+        width : 95%; 
+        margin-left : 2.5%
     }
 
 }

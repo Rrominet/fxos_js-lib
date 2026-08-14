@@ -51,25 +51,6 @@ class MessageWindow extends mlWindow
         this.button.remove();
     }
 
-    onDocumentResize()
-    {
-        if (this.draggable)
-            return;
-        let w = super.onDocumentResize();
-        let inverse = 100-w
-        let ml = (inverse/2) + "%";
-        let padding = this.padding.replace("em", "");
-        padding = this.padding.replace("px", "");
-        padding = parseFloat(padding)/4;
-
-        let unit = "";
-        if (this.padding.includes("em"))
-            unit = "em";
-        else 
-            unit = "px";
-        this.div.style.marginLeft = ml;
-    }
-
     onShow()
     {
         super.onShow();
@@ -94,11 +75,5 @@ class MessageWindow extends mlWindow
             e.stopPropagation();
             this.button.click();
         }
-    }
-
-    setScreenWidth(v, padding ="2em")
-    {
-        super.setScreenWidth(v, padding);
-        this.div.style.marginLeft = ((100-v)/2) + "%";
     }
 }
