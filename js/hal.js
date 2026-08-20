@@ -123,6 +123,11 @@ class Hal
 
     static async start()
     {
+        if (typeof(window.FM) == "undefined")
+            window.FM = "frameworks";
+        if (typeof(window.HAL_URL) == "undefined")
+            window.HAL_URL = "https://hal.motion-live.com";
+
         let scs = [];
         if (typeof(getUrlParameter) == "undefined")
             scs.push(FM + "/js/urlParameters.js");
