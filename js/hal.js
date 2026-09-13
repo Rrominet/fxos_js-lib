@@ -126,7 +126,12 @@ class Hal
         if (typeof(window.FM) == "undefined")
             window.FM = "frameworks";
         if (typeof(window.HAL_URL) == "undefined")
-            window.HAL_URL = "https://hal.motion-live.com";
+        {
+            if (location.href.includes("localhost"))
+                window.HAL_URL = "https:localhost:8888";
+            else
+                window.HAL_URL = "https://hal.motion-live.com";
+        }
 
         let scs = [];
         if (typeof(getUrlParameter) == "undefined")

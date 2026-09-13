@@ -49,4 +49,5 @@ HTMLElement.prototype.mkSpinning = function(disable=true, replaceContent=false)
         this.disabled = true;
 }
 
+HTMLElement.prototype.makeSpinning = HTMLElement.prototype.mkSpinning;
 HTMLElement.prototype.stopSpinning = HTMLElement.prototype.stopLoading;

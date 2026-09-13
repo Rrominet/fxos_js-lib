@@ -1242,6 +1242,50 @@ HTMLElement.prototype.connect = function (object, propertyName)
         this.innerText = object[propertyName];
 }
 
+HTMLElement.prototype.createSlider = function(val=0.5,min=0.0, max=1.0)
+{
+    const parent = this;
+    const container = parent.newNode("div", "slider-container");
+    container.slider = container.newNode("div", "slider");
+    container.pos = container.newNode("div", "slider-pos");
+    container.value = val;
+    container.__onchange = [];
+
+    const ondrag = (e) =>
+    {
+        let offset = e.clientX - container.x();
+        if (offset<0)
+            offset = 0;
+        if (offset>container.width())
+            offset = container.width();
+        container.pos.style.left = offset + "px";
+
+        let ratio = 1*offset / container.width();
+        container.value = min + ratio*(max - min);
+
+        for (const func of container.__onchange)
+            func(container.value);
+    };
+
+    Drag.addOnDragStart(container, (e, elmt) => {
+        ondrag(e);
+    });
+    Drag.addOnDragEnd(container, (e, elmt) => {
+        ondrag(e);
+    });
+    Drag.addOnDrag(container, (e, elmt) => {
+        ondrag(e);
+    });
+
+    container.addOnChange = function(func)
+    {
+        this.__onchange.push(func);
+    }
+    container.addOnDrag = container.addOnChange;
+
+    return container;
+}
+
 HTMLSelectElement.prototype.connect = HTMLInputElement.prototype.connect;
 
 HTMLInputElement.prototype.checkEmail = function()

@@ -117,21 +117,28 @@ class Commands
     {
         if (!url)
             url = window.location.href;
+        console.log("Executing from url...");
         url = new URL(url);
         const params = new URLSearchParams(url.search);
         const data = Object.fromEntries(params);
 
         if (!"cmd-id" in data)
+        {
+            console.log("No cmd-id in url.");
             return false;
+        }
 
         if (data["cmd-id"] == this.lastCmdExected)
+        {
+            console.log("Last command already executed.");
             return false;
+        }
 
         let cmd = null;
         cmd = this.get(data["cmd-id"]);
         if (!cmd)
         {
-            console.error(data["cmd-id"] + " is not a valid command.");
+            console.log(data["cmd-id"] + " is not a valid command.");
             return false;
         }
 
@@ -145,6 +152,7 @@ class Commands
         cmd.exec(args);
 
         this.lastCmdExected = data["cmd-id"];
+        console.log("Executed : " + data["cmd-id"]);
         return true;
     }
 
