@@ -435,16 +435,16 @@ class Calendrier
                     if (this.type == "formation")
                     {
                         if (this.lang == "fr")
-                            this.rdv = this.wm.message(div, onClick, "Prise de rendez-vous (durée : 20 min)");
+                            this.rdv = this.wm.message(div, onClick, "Prise de rendez-vous (durée : " + this.time + " min)");
                         else if (this.lang == "en")
-                            this.rdv = this.wm.message(div, onClick, "Book a meeting (duration : 20 min)");
+                            this.rdv = this.wm.message(div, onClick, "Book a meeting (duration : " + this.time + " min)");
                     }
                     else if (this.type == "ecole") 
                     {
                         if (this.lang == "fr")
-                            this.rdv = this.wm.message(div, onClick, "Prise de rendez-vous (durée : 30 min à 1 heure)");
+                            this.rdv = this.wm.message(div, onClick, "Prise de rendez-vous (durée : " + this.time + " min à 1 heure)");
                         else if (this.lang == "en")
-                            this.rdv = this.wm.message(div, onClick, "Book a meeting (duration : 30 min to 1H)");
+                            this.rdv = this.wm.message(div, onClick, "Book a meeting (duration : " + this.time + " min to 1H)");
                     }
                     this.rdv.mask(true);
                 }
