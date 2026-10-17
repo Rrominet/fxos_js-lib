@@ -1283,6 +1283,15 @@ HTMLElement.prototype.createSlider = function(val=0.5,min=0.0, max=1.0)
     }
     container.addOnDrag = container.addOnChange;
 
+    container.set = function(val)
+    {
+        container.value = val; 
+        let ratio = 1*(val - min) / (max - min);
+        container.pos.style.left = ratio*container.width() + "px";
+        for (const func of container.__onchange)
+            func(container.value);
+    };
+
     return container;
 }
 

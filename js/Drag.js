@@ -2,13 +2,9 @@ class Drag
 {
     constructor (el) 
     {
-        el.addEventListener("touchstart", this.dragStart.bind(this))
-        el.addEventListener("touchend", this.dragEnd.bind(this))
-        document.body.addEventListener("touchmouve", this.drag.bind(this))
-
-        el.addEventListener("mousedown", this.dragStart.bind(this))
-        el.addEventListener("mouseup", this.dragEnd.bind(this))
-        document.body.addEventListener("mousemove", this.drag.bind(this))
+        el.addEventListener("pointerdown", this.dragStart.bind(this))
+        el.addEventListener("pointerup", this.dragEnd.bind(this))
+        document.body.addEventListener("pointermove", this.drag.bind(this))
 
         this.currentX;
         this.currentY;
@@ -42,6 +38,7 @@ class Drag
         el.dragging = false;
         el.wasDragging = false;
         el.dragStarted = false;
+        el.style.touchAction = "none";
         if (typeof(el._onDragStart) == "undefined")
             el._onDragStart = [];
         if (func)
@@ -91,9 +88,9 @@ class Drag
             }, 16);
         }
 
-        el.addEventListener("mousedown", md);
-        addEventListener("mousemove", mm);
-        addEventListener("mouseup", mu);
+        el.addEventListener("pointerdown", md);
+        addEventListener("pointermove", mm);
+        addEventListener("pointerup", mu);
     }
 
     // BUG here because if the source el is different, the drag event will begin on the NEXT mousemoove click... 
@@ -114,7 +111,7 @@ class Drag
             }, 16);
         }
 
-        addEventListener("mouseup", mu);
+        addEventListener("pointerup", mu);
 
         el.dragStarted = true;
         el.sx = x; y;
@@ -159,7 +156,7 @@ class Drag
                 f(e, dragged);
         }
 
-        el.addEventListener("mouseup", mu);
+        el.addEventListener("pointerup", mu);
         return {"elmt" : el, "func" : func, "mu" : mu};
     }
 
@@ -177,7 +174,7 @@ class Drag
             }
         }
 
-        el.removeEventListener("mouseup", dropEventData.mu);
+        el.removeEventListener("pointerup", dropEventData.mu);
     }
 
     static clerDropEvent(el)
@@ -205,18 +202,7 @@ class Drag
             }
         }
 
-        addEventListener("mousemove", mm);
-    }
-
-    static testDndEvent()
-    {
-        const tstElmt = B.newTitle("div", "This is a test drag event elmt.<br>You can try to drag it.<br>You should see some infos in the <b>console</b>.");
-        const drpElmt = B.newTitle("div", "This is a test drop event elmt.<br>You can try to drop on it.<br>You should see some infos in the <b>console</b>.");
-
-        Drag.addOnDragStart(tstElmt, () => console.log("Drag started."));
-        Drag.addOnDrag(tstElmt, (me, elmt) => console.log("Dragging : " + elmt + " " + elmt.dragging));
-        Drag.addOnDragEnd(tstElmt, () => console.log("Drag ended."));
-        Drag.addOnDrop(drpElmt, (me, dropped) => console.log("Dropped : " + dropped));
+        addEventListener("pointermove", mm);
     }
 
     dragStart (e) 

@@ -10,8 +10,10 @@ class emails
     static send(person, emailtpl, tag, variables, from="romain.gilliot@motion-live.com")
     {
         const data = {};
-        data.nom = person.nom;
-        data.prenom = person.prenom;
+        if ("nom" in person)
+            data.nom = person.nom;
+        if ("prenom" in person)
+            data.prenom = person.prenom;
         data.to = person.email;
         data.from = from;
         data["email-tpl"] = emailtpl;
