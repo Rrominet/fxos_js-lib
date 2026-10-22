@@ -31,14 +31,6 @@ HTMLElement.prototype.mkLoading = function(disable=true)
 }
 HTMLElement.prototype.makeLoading = HTMLElement.prototype.mkLoading;
 
-HTMLElement.prototype.stopLoading = function()
-{
-    this.innerHTML = this.oldHTML;
-    this.removeAttribute("oldHTML");
-    if (this.disabled)
-        this.disabled = false;
-}
-
 HTMLElement.prototype.mkSpinning = function(disable=true, replaceContent=false)
 {
     this.oldHTML = this.innerHTML;
@@ -47,6 +39,14 @@ HTMLElement.prototype.mkSpinning = function(disable=true, replaceContent=false)
     this.createSpinner();
     if (disable)
         this.disabled = true;
+}
+
+HTMLElement.prototype.stopLoading = function()
+{
+    this.innerHTML = this.oldHTML;
+    this.removeAttribute("oldHTML");
+    if (this.disabled)
+        this.disabled = false;
 }
 
 HTMLElement.prototype.makeSpinning = HTMLElement.prototype.mkSpinning;

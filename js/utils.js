@@ -7,7 +7,7 @@ if (typeof document != "undefined")
 
 letters = "abcdefghijklmnopqrstuvwxyz";
 lettersMaj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-function round(value, precision) {
+function round(value, precision=2) {
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }

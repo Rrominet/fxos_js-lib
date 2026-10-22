@@ -1,7 +1,7 @@
 if (location.href.includes('localhost'))
     window.llm_url = "http://localhost:11111";
 else
-    window.llm_url = "https://llm.motion-live.com";
+    window.llm_url = "https://ai.motion-live.com";
 
 class llm
 {
