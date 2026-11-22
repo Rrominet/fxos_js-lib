@@ -1283,13 +1283,16 @@ HTMLElement.prototype.createSlider = function(val=0.5,min=0.0, max=1.0)
     }
     container.addOnDrag = container.addOnChange;
 
-    container.set = function(val)
+    container.set = function(val, triggerEvents=true)
     {
         container.value = val; 
         let ratio = 1*(val - min) / (max - min);
         container.pos.style.left = ratio*container.width() + "px";
-        for (const func of container.__onchange)
-            func(container.value);
+        if (triggerEvents)
+        {
+            for (const func of container.__onchange)
+                func(container.value);
+        }
     };
 
     return container;
@@ -1324,16 +1327,18 @@ HTMLElement.prototype.newTextarea = function (placeholder="", classList = [], id
 }
 
 
-HTMLElement.prototype.newA = function (href, classList = [], id="") 
+HTMLElement.prototype.newA = function (href, classList = [], id="", newWindow=false) 
 {
-    let node = newNode("a", this, classList, id); 
+    const node = newNode("a", this, classList, id); 
     node.href = href;
+    if (newWindow)
+        node.target = "_blank";
     return node;
 }
 
-HTMLElement.prototype.addA = function (txt, href, classList = [], id="") 
+HTMLElement.prototype.addA = function (txt, href, classList = [], id="", newWindow=false) 
 {
-    const node = this.newA(href, classList, id);
+    const node = this.newA(href, classList, id, newWindow);
     node.innerHTML = txt;
     return node;
 }
@@ -2629,10 +2634,12 @@ function download(filename, text)
     a.remove();
 }
 
-function downloadFile(path, filename)
+function downloadFile(path, filename="")
 {
     let a = B.newA(); 
     a.setAttribute("href", path); 
+    if (filename == "")
+        filename = path.split("/").last();
     a.download = filename;
     a.setAttribute("download", filename); 
     a.click()

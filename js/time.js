@@ -52,7 +52,7 @@ class Time
     }
 
     //format could be classic or letters
-    static readableFromSecs(seconds, format="classic")
+    static readableFromSecs(seconds, format="classic", includeHours=true, includeMin=true, includeSec=true)
     {
         let hours = 0;
         let min = 0;
@@ -64,9 +64,9 @@ class Time
 
         sec = parseInt(seconds%60);
 
-        sec = sec.toString().padStart(2, '0');;
-        min = min.toString().padStart(2, '0');;
-        hours = hours.toString().padStart(2, '0');;
+        sec = sec.toString().padStart(2, '0');
+        min = min.toString().padStart(2, '0');
+        hours = hours.toString().padStart(2, '0');
 
         if (sec == "NaN" || min == "NaN" || hours == "NaN")
         {   
@@ -77,7 +77,21 @@ class Time
         }
 
         if (format == "classic")
-            return hours + ":" + min + ":" + sec;
+        {
+            if (includeHours && includeMin && includeSec)
+                return hours + ":" + min + ":" + sec;
+            else if (includeHours && includeMin && !includeSec)
+                return hours + ":" + min;
+            else if (includeHours && !includeMin && !includeSec)
+                return hours;
+            else if (!includeHours && includeMin && !includeSec)
+                return min;
+            else if (!includeHours && includeMin && includeSec)
+                return min + ":" + sec;
+            else if (includeHours && !includeMin && includeSec)
+                return hours + ":" + sec;
+        }
+
         else if (format == "letters")
         {
             let _r = "";
@@ -88,7 +102,6 @@ class Time
             if (sec != "00" && sec != "NaN")
                 _r += sec + "s";
             return _r
-            
         }
     }
 

@@ -33,6 +33,7 @@ const mm = (e) =>
 B.addEventListener("mousemove", (e) => mm(e));
 B.addEventListener("touchstart", (e) => mm(e));
 B.addEventListener("touchmove", (e) => mm(e));
+B.addEventListener("click", (e) => mm(e));
 
 window.clearOnReactiveEventListener = function (){window.toExecOnReactive = [];}
 window.clearOnInactiveEventListener = function (){window.toExecOnInactive = [];}
@@ -100,4 +101,21 @@ window.trackInactivity = function()
 window.stopInactivityTrack = function ()
 {
     this.clearInterval(this.activityInterval);
+}
+
+
+HTMLElement.prototype.mouseHover = function(fixed=false)
+{
+    const pos = {x : this.x(), y : this.y()};
+    const size = {x : this.right(), y : this.bottom()};
+
+    let mpos = {x : window.mouseX, y : window.mouseY};
+    if (fixed)
+        mpos = {x : window.mouseScreenX, y : window.mouseScreenY};
+
+    if (mpos.x >=pos.x && mpos.x <=size.x &&
+        mpos.y >=pos.y && mpos.y <=size.y)
+        return true;
+    else 
+        return false;
 }

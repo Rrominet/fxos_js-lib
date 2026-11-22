@@ -222,12 +222,20 @@ class SoundManager
 
     toggleSound(name)
     {
+        const path = name;
         if (name.includes("/") || name.includes("."))
             name = this._nameFromPath(name);
-    	if (this.sounds[name].paused)
-    		this.sounds[name].play(); 
-    	else 
-    		this.sounds[name].pause();
+        if (!(name in this.sounds))
+            return this.playSound(path);
+        else
+        {
+            if (this.sounds[name].paused)
+                this.sounds[name].play(); 
+            else 
+                this.sounds[name].pause();
+        }
+
+        return this.sounds[name];
     }
 
     setParams(sound, params) 

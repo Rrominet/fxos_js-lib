@@ -29,10 +29,11 @@ class UIList
             this.div = this.parent.newNode("div", "list");
             this.div.setAttribute("tabindex", "0");
             this.div.head = this.div.newNode("div", "head");
-            this.div.head.titre = this.div.head.newTitle("div", title, "title");
+            if (title != "")
+                this.div.head.titre = this.div.head.newTitle("div", title, "title");
             if (search)
             {
-                this.div.head.search = this.div.head.addInput("text", "Rechercher...", "search");
+                this.div.head.search = this.div.head.addInput("text", "Search...", "search");
                 this.div.head.search.addEventListener("input", () => this.onSearch());
             }
             this.list = this.div.newNode("div", "elmts");
@@ -104,7 +105,7 @@ class UIList
         Elmt._uiElmt = Elmt[nodename];
 
         if (this.div)
-            this.div.head.search.placeholder = "Rechercher parmis les " + this.elmts.length + " éléments...";
+            this.div.head.search.placeholder = "Search in " + this.elmts.length + " elements...";
 
         return Elmt;
     }
@@ -116,11 +117,7 @@ class UIList
 
     addText(txt)
     {
-        const elmt = {};
-        elmt._uiElmt = D.createElement("div");
-        elmt._uiElmt.innerHTML = txt;
-        this.add(elmt);
-        return elmt._uiElmt;
+        return this.add(txt);
     }
 
     setTitle(val)
