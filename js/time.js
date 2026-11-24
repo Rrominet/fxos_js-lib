@@ -109,6 +109,16 @@ class Time
     {
         return Time.readableFromSecs(miliseconds/1000);
     }
+
+    static wait(time, timemax=-1)
+    {
+        return new Promise((resolve) =>
+            {
+                if (timemax != -1)
+                    time = Math.random() * (timemax - time) + time;
+                setTimeout(resolve, time);
+            });
+    }
 }
 
 try{
